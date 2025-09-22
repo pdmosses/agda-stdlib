@@ -55,7 +55,7 @@ IMPORT-PATHS := $(subst .,/,$(IMPORT-NAMES))
 
 # Names of modules in DIR:
 MODULE-NAMES := $(sort $(subst /,.,$(subst $(DIR)/,,$(basename $(shell \
-		find $(DIR) -name '*.lagda')))))
+		find $(DIR) -name '*.agda')))))
 
 # Names of imported modules in DIR:
 AGDA-NAMES := $(filter $(MODULE-NAMES),$(IMPORT-NAMES))
@@ -64,7 +64,7 @@ AGDA-NAMES := $(filter $(MODULE-NAMES),$(IMPORT-NAMES))
 AGDA-PATHS := $(subst .,/,$(AGDA-NAMES))
 
 # Agda source files:
-AGDA-FILES := $(addprefix $(DIR)/,$(addsuffix .lagda,$(AGDA-PATHS)))
+AGDA-FILES := $(addprefix $(DIR)/,$(addsuffix .agda,$(AGDA-PATHS)))
 
 # Target files:
 MD-FILES := $(addprefix $(MD)/,$(addsuffix /index.md,$(IMPORT-PATHS)))
@@ -82,11 +82,20 @@ export DEBUG
 debug:
 	@echo "$$DEBUG"
 
-.PHONY: all
-all:
-	$(MAKE) check
-	$(MAKE) html
-	$(MAKE) md
+# Clean and regenerate the website:
+
+.PHONY: website
+website:
+	@echo Generating a website for the Agda standard library may take about 2 mins
+	@echo Clean ...
+	@$(MAKE) -f Makefile clean
+	@echo Generate HTML ...
+	@$(MAKE) -f Makefile html
+	@echo Generate Markdown ...
+	@$(MAKE) -f Makefile md
+	@echo ... finished
+	@echo To preview the generated webite:
+	@echo "    make -f Makefile serve"
 
 # Check Agda source files:
 
@@ -168,33 +177,39 @@ deploy: all
 clean: clean-html clean-md
 
 clean-html:
-	@rm -rf $(HTML-FILES)
+	@rm -rf $(HTML)
 
 clean-md:
-	@rm -rf $(MD-FILES)
+	@rm -rf $(MD)
 
 # Texts
 
 define HELP
 
-make all
+make -f Makefile = make -f Makefile help
+  Display this list of make targets
+make -f Makefile website
   Generate website for $(ROOT)
-make check:
+make -f Makefile check
   Check loading the Agda source files for $(ROOT)
-make serve
+make -f Makefile serve
   Serve the generated website locally
-make deploy
+make -f Makefile deploy
   Deploy the website on GitHub Pages 
-make html:
+make -f Makefile html
   Generate web page sources in ${HTML}
-make md:
+make -f Makefile md
   Generate web page sources in $(MD)
-make clean:
+make -f Makefile clean
   Remove all generated files
-make clean-md:
+make -f Makefile clean-md
   Remove generated Markdown files
-make clean-html:
+make -f Makefile clean-html
   Remove generated HTML files
+make -f Makefile debug
+  Display the values of variables
+
+Note: all make commands load $(ROOT) to initialize HTML-FILES
 
 endef
 
@@ -210,11 +225,11 @@ IMPORT-PATHS (1-5): $(wordlist 1, 5, $(IMPORT-PATHS))
 
 MODULE-NAMES (1-5): $(wordlist 1, 5, $(MODULE-NAMES))
 
-AGDA-NAMES   (1-5): $(wordlist 1, 5, $(AGDA-NAMES)
+AGDA-NAMES   (1-5): $(wordlist 1, 5, $(AGDA-NAMES))
 
-AGDA-PATHS   (1-5): $(wordlist 1, 5, $(AGDA-PATHS)
+AGDA-PATHS   (1-5): $(wordlist 1, 5, $(AGDA-PATHS))
 
-AGDA-FILES   (1-5): $(wordlist 1, 5, $(AGDA-FILES)
+AGDA-FILES   (1-5): $(wordlist 1, 5, $(AGDA-FILES))
 
 HTML-FILES   (1-5): $(wordlist 1, 5, $(HTML-FILES))
 
