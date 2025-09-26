@@ -24,6 +24,18 @@ TEMP  := /tmp/html
 
 SHELL=/bin/sh
 
+# Characters:
+
+EMPTY :=
+
+SPACE := $(EMPTY) $(EMPTY)
+
+# A single newline:
+define NEWLINE :=
+
+
+endef
+
 # Shell commands for calling Agda:
 AGDA-Q := agda --include-path=$(DIR) --trace-imports=0
 AGDA-V := agda --include-path=$(DIR)
@@ -31,21 +43,13 @@ AGDA-V := agda --include-path=$(DIR)
 # Name of ROOT module:
 NAME := $(subst /,.,$(subst $(DIR)/,,$(basename $(ROOT))))
 
-# A single newline:
-define NEWLINE
-
-
-endef
-
-EMPTY :=
-
-SPACE := $(EMPTY) $(EMPTY)
-
 # Target files:
-HTML-FILES := $(subst $(TEMP)/,$(HTML)/,$(shell \
+HTML-FILES := $(sort \
+	$(HTML)/$(NAME).html \
+	$(patsubst $(TEMP)/%,$(HTML)/%,$(shell \
 		rm -f $(TEMP)/*.html; \
 		$(AGDA-Q) --html --html-dir=$(TEMP) $(ROOT); \
-		ls $(TEMP)/*.html))
+		ls $(TEMP)/*.html)))
 
 # Names of modules imported (perhaps indirectly) by ROOT:
 IMPORT-NAMES := $(subst $(HTML)/,,$(basename $(HTML-FILES)))
@@ -84,18 +88,22 @@ debug:
 
 # Clean and regenerate the website:
 
+# Note: Generating a website for the Agda standard library may take about 2 mins
+
 .PHONY: website
 website:
 	@echo Generating a website for the Agda standard library may take about 2 mins
 	@echo Clean ...
-	@$(MAKE) -f Makefile clean
-	@echo Generate HTML ...
+	@$(MAKE) -f Makefile clean-all
+	@echo Generate HTML in $(HTML) ...
 	@$(MAKE) -f Makefile html
-	@echo Generate Markdown ...
+	@echo Generate Markdown in $(MD) ...
 	@$(MAKE) -f Makefile md
 	@echo ... finished
+	@echo
 	@echo To preview the generated webite:
-	@echo "    make -f Makefile serve"
+	@echo "    make serve"
+	@echo
 
 # Check Agda source files:
 
@@ -131,16 +139,12 @@ html: $(AGDA-FILES)
 .PHONY: md
 md: $(MD-FILES)
 
-# It is unclear to me how to use order-only prerequisites to ensure that $(MD)
-# has been initialized. The following use of md-init is a workaround...
+# Create HTML files in $(MD):
+$(MD):
+	@$(AGDA-Q) --html --html-highlight=code --html-dir=$(MD) $(ROOT)
 
-.PHONY: md-init
-md-init:
-	@if [ ! -d $(MD) ] ; then \
-	    $(AGDA-V) --html --html-highlight=code --html-dir=$(MD) $(ROOT); \
-	fi
-
-$(MD-FILES): $(MD)/%/index.md: $(HTML-FILES) md-init
+# Use an order-only prerequisite:
+$(MD-FILES): $(MD)/%/index.md: $(AGDA-FILES) | $(MD)
 	@mkdir -p $(@D)
 # Wrap *.html files in <pre> tags, and rename *.html and *.tex files to *.md:
 	@if [ -f $(MD)/$(subst /,.,$*).html ]; then \
@@ -173,8 +177,8 @@ deploy: all
 
 # Remove all files generated from ROOT
 
-.PHONY: clean clean-html clean-md
-clean: clean-html clean-md
+.PHONY: clean-all clean-html clean-md
+clean-all: clean-html clean-md
 
 clean-html:
 	@rm -rf $(HTML)
@@ -200,7 +204,7 @@ make -f Makefile html
   Generate web page sources in ${HTML}
 make -f Makefile md
   Generate web page sources in $(MD)
-make -f Makefile clean
+make -f Makefile clean-all
   Remove all generated files
 make -f Makefile clean-md
   Remove generated Markdown files
