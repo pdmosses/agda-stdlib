@@ -172,7 +172,7 @@ serve:
 # Update and build the website, then deploy it on GitHub Pages from the gh-pages branch
 
 .PHONY: deploy
-deploy: all
+deploy:
 	@mkdocs gh-deploy --force
 
 # Remove all files generated from ROOT
