@@ -28,6 +28,37 @@ some more documentation.
 - You can [browse the library's source code](https://agda.github.io/agda-stdlib/)
 in glorious clickable HTML.
 
+## Alternative website generation (experimental)
+
+> [!TIP]
+> You can generate a website with hierarchical navigation menus and a toggle
+> for switching between light and dark mode.
+
+See https://pdmosses.github.io/agda-stdlib/ for a prototype.
+
+-   You can generate the website by the following commands:
+    
+    ```sh
+    make -f Makefile check
+    make -f Makefile website
+    ```
+
+-   You can preview the generated website locally by:
+    
+    ```sh
+    make -f Makefile serve
+    ```
+
+-   You can deploy the generated website to GitHub Pages by updating the site
+    and repo data in `mkdocs.yml` then running:
+    
+    ```sh
+    make -f Makefile deploy
+    ```
+
+See the [additional installation instructions](https://github.com/agda/agda-stdlib/blob/master/docs/installation-guide.md)
+for the software dependencies of the website generation.
+
 ## Installation instructions
 
 See the [installation instructions](https://github.com/agda/agda-stdlib/blob/master/doc/installation-guide.md) for the latest version of the standard library.
