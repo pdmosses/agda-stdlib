@@ -1,5 +1,7 @@
 nav:
-  - index.md
+  - About:
+    - index.md
+    - installation-guide.md
   - README:
     - md/README/index.md
     - md/README/*
