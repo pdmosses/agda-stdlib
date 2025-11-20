@@ -3,6 +3,13 @@ site_url: https://pdmosses.github.io/agda-stdlib/
 repo_name: pdmosses/agda-stdlib
 repo_url: https://github.com/pdmosses/agda-stdlib
 
+# To deploy website versions:
+# - install mike (https://github.com/jimporter/mike/)
+# - uncomment the following lines:
+extra:
+  version:
+    provider: mike
+
 use_directory_urls: true
 
 theme:
@@ -55,14 +62,21 @@ markdown_extensions:
   - footnotes
   - md_in_html
   - meta
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.details
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.mark
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
   - tables
+  - pymdownx.tilde
 
 plugins:
 - search

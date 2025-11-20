@@ -49,11 +49,55 @@ See https://pdmosses.github.io/agda-stdlib/ for a prototype.
     make -f Makefile serve
     ```
 
--   You can deploy the generated website to GitHub Pages by updating the site
-    and repo data in `mkdocs.yml` then running:
+-   You can deploy the generated website to GitHub Pages *without* versioning
+    by updating the site and repo data in `mkdocs.yml` then running:
     
     ```sh
     make -f Makefile deploy
+    ```
+
+-   You can deploy the generated website to GitHub Pages as a *versioned* site
+    with initial version `v` by:
+    
+    ```sh
+    make -f Makefile initial VERSION=v
+    ```
+
+    A version selector is then shown at the top of each page. Version
+    identifiers that "look like" versions (e.g. `1.2.3`, `1.0b1`, `v1.0`)
+    are treated as ordinary versions, whereas other identifiers, like `devel`,
+    are treated as development versions, and placed above ordinary versions.
+
+    You can deploy a new version and make it the *default* version by:
+
+    ```sh
+    make -f Makefile default VERSION=v
+    ```
+
+    You can also deploy a new version *without* updating it to be the default:
+
+    ```sh
+    make -f Makefile extra VERSION=v
+    ```
+
+    When deploying the generated website as a version, other versions of the
+    website remain untouched. If a version is already deployed, redeployment
+    updates its contents.
+
+    Note: Deploying a new version does *not* involve updating the content of
+    generated website!
+
+    To remove a deployed version `v` *other than the current default* run:
+
+    ```sh
+    make -f Makefile delete VERSION=v
+    ```
+ 
+    Finally, you can browse all the currently deployed versions of your website
+    locally by:
+    
+    ```sh
+    make -f Makefile serve-all
     ```
 
 See the [additional installation instructions](https://github.com/agda/agda-stdlib/blob/master/docs/installation-guide.md)

@@ -39,6 +39,7 @@ by editing `Makefile`.
 - [MkDocs] (1.6.1)
 - [Material for MkDocs] (9.6.19)
 - [Awesome-nav] (3.2.0)
+- [mike] (2.0.0)
 
 ## Platform dependencies
 
@@ -59,3 +60,4 @@ with Apple M1 and M3 chips running macOS Sequoia (15.5) with CLI Tools.
 [MkDocs]: https://www.mkdocs.org/getting-started/
 [Material for MkDocs]: https://squidfunk.github.io/mkdocs-material/getting-started/
 [Awesome-nav]: https://lukasgeiter.github.io/mkdocs-awesome-nav/
+[mike]: https://github.com/jimporter/mike/
