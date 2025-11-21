@@ -7,8 +7,9 @@ nav:
     - md/README/*
   - Library:
     - Library/index.md
+    - md/index/index.md
     - md/*
-  - HTML: html/README.html
+  - HTML: html/index.html
 
 preserve_directory_names: true
 

@@ -71,8 +71,7 @@
 # ARGUMENT DEFAULT VALUES
 
 DIR     := doc
-ROOT    := doc/README.agda
-# TODO: update to doc/index.agda
+ROOT    := doc/index.agda
 
 # DIR needs to be a prefix of ROOT; the other arguments are independent.
 # Generation of multi-ROOT websites requires multiple calls of make.
@@ -119,6 +118,9 @@ PROJECT := $(shell pwd)
 
 AGDA-Q := agda --include-path=$(DIR) --trace-imports=0
 AGDA-V := agda --include-path=$(DIR) --trace-imports=3
+
+# TODO: Change DIR to . and use agda -i. -idoc -isrc,
+# following the instructions in doc/release-guide.txt
 
 ##############################################################################
 # HELPFUL TARGETS
