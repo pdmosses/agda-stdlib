@@ -1,4 +1,4 @@
-# Makefile for generating websites and pdfs from Agda sources
+# Makefile for generating websites from Agda sources
 
 # Peter Mosses (@pdmosses)
 # November 2025
@@ -8,32 +8,51 @@
 
 # MAKE CLEAN WEBSITE:
 # make -f Makefile clean-all
-# make -f Makefile all
+# make -f Makefile web
 
 # SHOW EXPLANATIONS OF THE MAIN TARGETS:
-# make help
+# make -f Makefile help
 
 # CHECK THE AGDA CODE:
-# make check
+# make -f Makefile check
 
-# GENERATE, BROWSE AND DEPLOY A WEBSITE:
-# make web
-# make serve
-# make deploy
+# BROWSE AND DEPLOY A WEBSITE:
+# make -f Makefile serve
+# make -f Makefile deploy
 
 # DEPLOY A VERSION OF A GENERATED WEBSITE:
-# make initial VERSION=...
-# make default VERSION=...
-# make extra   VERSION=...
-# make delete  VERSION=...
-# make serve-all
+# make -f Makefile initial VERSION=...
+# make -f Makefile default VERSION=...
+# make -f Makefile extra   VERSION=...
+# make -f Makefile delete  VERSION=...
+# make -f Makefile serve-all
 
 # REMOVE ALL GENERATED FILES:
-# make clean-all
+# make -f Makefile clean-all
 
 # SHOW VARIABLE VALUES:
-# make debug
+# make -f Makefile debug
 # (An example of the output is listed at the end of this file)
+
+# TIMED EXAMPLES:
+
+# agda-stdlib: time make -f Makefile check
+# Checking Agda sources finished
+# make -f Makefile check  37.74s user 4.92s system 96% cpu 44.116 total
+
+# agda-stdlib: time make -f Makefile clean-all
+# make -f Makefile clean-all  21.69s user 4.07s system 98% cpu 26.102 total
+
+# agda-stdlib: time make -f Makefile web      
+# Web pages finished
+# make -f Makefile web  87.09s user 34.84s system 103% cpu 1:57.83 total
+
+# agda-stdlib: time make -f Makefile serve
+# INFO    -  Building documentation...
+# INFO    -  Cleaning site directory
+# INFO    -  Documentation built in 71.61 seconds
+# INFO    -  [12:58:59] Serving on http://127.0.0.1:8000/agda-stdlib/
+
 
 ##############################################################################
 # COMMAND LINE ARGUMENTS
@@ -428,8 +447,20 @@ LOCAL-IMPORT-FILES (1-9): $(wordlist 1, 9, $(LOCAL-IMPORT-FILES))
 
 MD-FILES     (1-9): $(wordlist 1, 9, $(MD-FILES))
 
-AGDA-FILES:   $(AGDA-FILES)
-
-LAGDA-FILES:  $(LAGDA-FILES)
-
 endef
+
+# agda-stdlib: make -f Makefile debug      
+
+# DIR:          doc
+# ROOT:         doc/README.agda
+# PROJECT:      /Users/pdm/Projects/Agda/agda-stdlib
+# NAME-PATH:    README
+# NAME:         README
+
+# HTML-FILES   (1-9): docs/html/Agda.Builtin.Bool.html docs/html/Agda.Builtin.Char.Properties.html docs/html/Agda.Builtin.Char.html docs/html/Agda.Builtin.Coinduction.html docs/html/Agda.Builtin.Equality.Erase.html docs/html/Agda.Builtin.Equality.html docs/html/Agda.Builtin.Float.Properties.html docs/html/Agda.Builtin.Float.html docs/html/Agda.Builtin.FromNat.html
+
+# IMPORT-PATHS (1-9): Agda/Builtin/Bool Agda/Builtin/Char/Properties Agda/Builtin/Char Agda/Builtin/Coinduction Agda/Builtin/Equality/Erase Agda/Builtin/Equality Agda/Builtin/Float/Properties Agda/Builtin/Float Agda/Builtin/FromNat
+
+# LOCAL-IMPORT-FILES (1-9): Everything.agda EverythingSafe.agda                                                                          README/Axiom.agda README/Case.agda README/Data/Container/FreeMonad.agda README/Data/Container/Indexed/MultiSortedAlgebraExample.agda README/Data/Container/Indexed/VectorExample.agda README/Data/Default.agda README/Data/Fin/Substitution/UntypedLambda.agda
+
+# MD-FILES     (1-9): docs/md/Agda/Builtin/Bool/index.md docs/md/Agda/Builtin/Char/Properties/index.md docs/md/Agda/Builtin/Char/index.md docs/md/Agda/Builtin/Coinduction/index.md docs/md/Agda/Builtin/Equality/Erase/index.md docs/md/Agda/Builtin/Equality/index.md docs/md/Agda/Builtin/Float/Properties/index.md docs/md/Agda/Builtin/Float/index.md docs/md/Agda/Builtin/FromNat/index.
