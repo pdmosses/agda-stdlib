@@ -72,6 +72,7 @@
 
 DIR     := doc
 ROOT    := doc/README.agda
+# TODO: update to doc/index.agda
 
 # DIR needs to be a prefix of ROOT; the other arguments are independent.
 # Generation of multi-ROOT websites requires multiple calls of make.

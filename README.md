@@ -40,7 +40,7 @@ See https://pdmosses.github.io/agda-stdlib/ for a prototype.
     
     ```sh
     make -f Makefile check
-    make -f Makefile website
+    make -f Makefile web
     ```
 
 -   You can preview the generated website locally by:
