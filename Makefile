@@ -178,10 +178,6 @@ HTML-FILES := $(sort \
 # Paths of modules imported (perhaps indirectly) by ROOT:
 IMPORT-PATHS := $(subst .,/,$(subst $(HTML)/,,$(basename $(HTML-FILES))))
 
-# Names of imported modules located in DIR:
-LOCAL-IMPORT-FILES := $(foreach n,$(IMPORT-PATHS),$(filter $n.%,$(sort $(subst $(DIR)/,,$(shell \
-		find $(DIR) -name '*.agda' -or -name '*.lagda')))))
-
 # Target files for Markdown generation:
 MD-FILES := $(sort $(addprefix $(MD)/,$(addsuffix /index.md,$(IMPORT-PATHS))))
 
@@ -235,8 +231,7 @@ $(MD)/$(NAME-PATH):
 	@mkdir -p $(MD)/$(NAME-PATH)
 
 # Use an order-only prerequisite:
-$(MD-FILES): $(MD)/%/index.md: $(prefix $(DIR),$(LOCAL-IMPORT-FILES)) \
-				| $(MD)/$(NAME-PATH)
+$(MD-FILES): $(MD)/%/index.md: | $(MD)/$(NAME-PATH)
 	@mkdir -p $(@D)
 # Wrap *.html files in <pre> tags, and rename *.html and *.tex files to *.md:
 	@if [ -f $(MD)/$(subst /,.,$*).html ]; then \
@@ -446,24 +441,54 @@ HTML-FILES   (1-9): $(wordlist 1, 9, $(HTML-FILES))
 
 IMPORT-PATHS (1-9): $(wordlist 1, 9, $(IMPORT-PATHS))
 
-LOCAL-IMPORT-FILES (1-9): $(wordlist 1, 9, $(LOCAL-IMPORT-FILES))
-
 MD-FILES     (1-9): $(wordlist 1, 9, $(MD-FILES))
 
 endef
 
-# agda-stdlib: make -f Makefile debug      
+define TIMES
 
-# DIR:          doc
-# ROOT:         doc/README.agda
-# PROJECT:      /Users/pdm/Projects/Agda/agda-stdlib
-# NAME-PATH:    README
-# NAME:         README
+agda-stdlib: time make -f Makefile check
+Checking Agda sources finished
+make -f Makefile check  31.21s user 2.01s system 98% cpu 33.880 total
 
-# HTML-FILES   (1-9): docs/html/Agda.Builtin.Bool.html docs/html/Agda.Builtin.Char.Properties.html docs/html/Agda.Builtin.Char.html docs/html/Agda.Builtin.Coinduction.html docs/html/Agda.Builtin.Equality.Erase.html docs/html/Agda.Builtin.Equality.html docs/html/Agda.Builtin.Float.Properties.html docs/html/Agda.Builtin.Float.html docs/html/Agda.Builtin.FromNat.html
+agda-stdlib: time make -f Makefile clean-all         
+make -f Makefile clean-all  17.59s user 1.41s system 98% cpu 19.242 total
 
-# IMPORT-PATHS (1-9): Agda/Builtin/Bool Agda/Builtin/Char/Properties Agda/Builtin/Char Agda/Builtin/Coinduction Agda/Builtin/Equality/Erase Agda/Builtin/Equality Agda/Builtin/Float/Properties Agda/Builtin/Float Agda/Builtin/FromNat
+agda-stdlib: time make -f Makefile web               
+Web pages finished
+make -f Makefile web  70.84s user 24.24s system 101% cpu 1:33.52 total
 
-# LOCAL-IMPORT-FILES (1-9): Everything.agda EverythingSafe.agda                                                                          README/Axiom.agda README/Case.agda README/Data/Container/FreeMonad.agda README/Data/Container/Indexed/MultiSortedAlgebraExample.agda README/Data/Container/Indexed/VectorExample.agda README/Data/Default.agda README/Data/Fin/Substitution/UntypedLambda.agda
+agda-stdlib: time make -f Makefile serve
+INFO    -  Building documentation...
+INFO    -  Cleaning site directory
+INFO    -  Documentation built in 60.79 seconds
+INFO    -  [10:28:05] Watching paths for changes: 'docs', 'mkdocs.yml'
+INFO    -  [10:28:05] Serving on http://127.0.0.1:8000/agda-stdlib/
+^CINFO    -  Shutting down...
+make -f Makefile serve  77.20s user 2.98s system 91% cpu 1:27.62 total
 
-# MD-FILES     (1-9): docs/md/Agda/Builtin/Bool/index.md docs/md/Agda/Builtin/Char/Properties/index.md docs/md/Agda/Builtin/Char/index.md docs/md/Agda/Builtin/Coinduction/index.md docs/md/Agda/Builtin/Equality/Erase/index.md docs/md/Agda/Builtin/Equality/index.md docs/md/Agda/Builtin/Float/Properties/index.md docs/md/Agda/Builtin/Float/index.md docs/md/Agda/Builtin/FromNat/index.
+agda-stdlib: time make -f Makefile initial VERSION=2.4-dev
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory:
+           /Users/pdm/Projects/Agda/agda-stdlib/site
+INFO    -  Documentation built in 61.22 seconds
+Deployed 2.4-dev as the only version
+make -f Makefile initial VERSION=2.4-dev  80.52s user 3.57s system 95% cpu 1:27.77 total
+
+agda-stdlib: time make -f Makefile debug
+
+DIR:          .
+ROOT:         index.agda
+PROJECT:      /Users/pdm/Projects/Agda/agda-stdlib
+NAME-PATH:    index
+NAME:         index
+
+HTML-FILES   (1-9): docs/html/Agda.Builtin.Bool.html docs/html/Agda.Builtin.Char.Properties.html docs/html/Agda.Builtin.Char.html docs/html/Agda.Builtin.Coinduction.html docs/html/Agda.Builtin.Equality.Erase.html docs/html/Agda.Builtin.Equality.html docs/html/Agda.Builtin.Float.Properties.html docs/html/Agda.Builtin.Float.html docs/html/Agda.Builtin.FromNat.html
+
+IMPORT-PATHS (1-9): Agda/Builtin/Bool Agda/Builtin/Char/Properties Agda/Builtin/Char Agda/Builtin/Coinduction Agda/Builtin/Equality/Erase Agda/Builtin/Equality Agda/Builtin/Float/Properties Agda/Builtin/Float Agda/Builtin/FromNat
+
+MD-FILES     (1-9): docs/md/Agda/Builtin/Bool/index.md docs/md/Agda/Builtin/Char/Properties/index.md docs/md/Agda/Builtin/Char/index.md docs/md/Agda/Builtin/Coinduction/index.md docs/md/Agda/Builtin/Equality/Erase/index.md docs/md/Agda/Builtin/Equality/index.md docs/md/Agda/Builtin/Float/Properties/index.md docs/md/Agda/Builtin/Float/index.md docs/md/Agda/Builtin/FromNat/index.md
+
+make -f Makefile debug  17.43s user 1.29s system 96% cpu 19.473 total
+
+endef
