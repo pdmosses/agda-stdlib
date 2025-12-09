@@ -1,7 +1,7 @@
 # Makefile for generating websites from Agda sources
 
 # Peter Mosses (@pdmosses)
-# November 2025
+# December 2025
 
 ##############################################################################
 # MAIN TARGETS
@@ -38,21 +38,28 @@
 
 # agda-stdlib: time make -f Makefile check
 # Checking Agda sources finished
-# make -f Makefile check  37.74s user 4.92s system 96% cpu 44.116 total
+# make -f Makefile check  32.71s user 2.07s system 97% cpu 35.583 total
 
 # agda-stdlib: time make -f Makefile clean-all
-# make -f Makefile clean-all  21.69s user 4.07s system 98% cpu 26.102 total
+# make -f Makefile clean-all  18.27s user 1.60s system 95% cpu 20.735 total
 
 # agda-stdlib: time make -f Makefile web      
 # Web pages finished
-# make -f Makefile web  87.09s user 34.84s system 103% cpu 1:57.83 total
+# make -f Makefile web  85.31s user 39.37s system 103% cpu 2:00.30 total
 
-# agda-stdlib: time make -f Makefile serve
+# agda-stdlib: make -f Makefile serve    
 # INFO    -  Building documentation...
 # INFO    -  Cleaning site directory
-# INFO    -  Documentation built in 71.61 seconds
-# INFO    -  [12:58:59] Serving on http://127.0.0.1:8000/agda-stdlib/
+# INFO    -  Documentation built in 67.01 seconds
+# INFO    -  [21:12:12] Serving on http://127.0.0.1:8000/agda-stdlib/
 
+# agda-stdlib: time make -f Makefile default VERSION=2.4-dev
+# INFO    -  Cleaning site directory
+# INFO    -  Building documentation to directory:
+#            /Users/pdm/Projects/Agda/agda-stdlib/site
+# INFO    -  Documentation built in 68.98 seconds
+# Deployed 2.4-dev as the default version
+# make -f Makefile default VERSION=2.4-dev  104.04s user 7.56s system 86% cpu 2:08.32 total
 
 ##############################################################################
 # COMMAND LINE ARGUMENTS
@@ -116,8 +123,8 @@ SHELL=/bin/sh
 
 PROJECT := $(shell pwd)
 
-# As in doc/release-guide.txt:
-AGDA := agda -i. -idoc -isrc
+# As in doc/release-guide.txt, but also ignoring the user's libraries.
+AGDA := agda -i. -idoc -isrc --no-libraries
 
 AGDA-Q := $(AGDA) --trace-imports=0
 AGDA-V := $(AGDA) --trace-imports=3
@@ -196,7 +203,8 @@ web: html md
 
 .PHONY: html
 html:
-	@$(AGDA-Q) --html --html-dir=$(HTML) $(ROOT)
+	@$(AGDA-Q) --html --highlight-occurrences \
+	    --html-dir=$(HTML) $(ROOT) > /dev/null
 
 # Alternative rule – potentially quicker:
 
@@ -205,10 +213,16 @@ html:
 
 # Generate Markdown sources for web pages:
 
-# `agda --html --html-highlight=code ROOT.lagda` produces highlighted HTML
-# from plain `agda` and literate `lagda` source files. The file extension is
-# `tex` for HTML produced from `lagda` files; it is `html` for `agda` files,
-# but the files needs to be wrapped in `<pre class="Agda">...</pre>` tags.
+# `agda --html --html-highlight=code ROOT` generates highlighted HTML files
+# from plain and literate Agda source files. The generated file extension
+# depends on the source file extension. It is:
+#  - `html` for `*.agda` files,
+#  - `tex` for `*.lagda` and `*.lagda.tex` files, and
+#  - `md` for `*.lagda.md` files.
+# In the `tex` files, code blocks are in `<pre class="Agda">...</pre>` tags;
+# the entire file needs to be wrapped in those tags, as do the `html` files.
+# For semantic HTML, code is also wrappewd in `<code class="Agda">...</code>`.
+# All the generated files are renamed to `*/index.md` files.
 
 # The links in the HTML files assume they are all in the same directory, and
 # that all files have extension `.html`. Adjusting them to hierarchical links
@@ -227,7 +241,9 @@ md: $(MD-FILES)
 
 # Create HTML files and ROOT directory in $(MD):
 $(MD)/$(NAME-PATH):
-	@$(AGDA-Q) --html --html-highlight=code --html-dir=$(MD) $(ROOT)
+	@$(AGDA-Q) --html --html-highlight=code --highlight-occurrences \
+	    --html-dir=$(MD) $(ROOT) > /dev/null
+	@rm $(MD)/Agda.css
 	@mkdir -p $(MD)/$(NAME-PATH)
 
 # Use an order-only prerequisite:
@@ -236,15 +252,43 @@ $(MD-FILES): $(MD)/%/index.md: | $(MD)/$(NAME-PATH)
 # Wrap *.html files in <pre> tags, and rename *.html and *.tex files to *.md:
 	@if [ -f $(MD)/$(subst /,.,$*).html ]; then \
 	    mv -f $(MD)/$(subst /,.,$*).html $@; \
-	    sd '\A' '<pre class="Agda">' $@; sd '\z' '</pre>' $@; \
-	else \
+	    sd '\A' '<pre class="Agda"><code class="Agda">' $@; \
+	    sd '\z' '</code></pre>' $@; \
+	elif [ -f $(MD)/$(subst /,.,$*).tex ]; then \
 	    mv -f $(MD)/$(subst /,.,$*).tex $@; \
+	    sd '<pre class="Agda">\n' '<code class="Agda">' $@; \
+	    sd '\n</pre>' '</code>' $@; \
+	    sd '\A' '<pre class="Agda">' $@; \
+	    sd '\z' '</pre>' $@; \
+	elif [ -f $(MD)/$(subst /,.,$*).md ]; then \
+	    mv -f $(MD)/$(subst /,.,$*).md $@; \
+	    sd '(<pre class="Agda">)' '$$1<code class="Agda">' $@; \
+	    sd '(</pre>)' '</code>$$1' $@; \
+	else \
+	    rm -f $(MD)/$(subst /,.,$<); \
 	fi
-# Remove LaTeX page breaks:
-	@sd '\n\\(clearpage|newpage)\n' '' $@
-# Prepend front matter:
-	@sd -- '\A' \
-		'---\ntitle: $(*F)\nhide: toc\n---\n\n# $(subst /,.,$*)\n\n' $@
+# Add a section heading for each module, unless ##-headings are already present:
+	@if ! grep -q '^## ' $@; then \
+	    sd '(\n*)([ ]*)(<a .*class="Keyword">module</a>[^<]*<a .*class="Module">)([^<]*)</a>' \
+	        '$$1</code></pre>\n\n## $$2$$4\n\n<pre class="Agda"><code class="Agda">$$2$$3$$4</a>' $@; \
+	    sd '##         ' '###### ' $@; \
+	    sd '##       '   '##### ' $@; \
+	    sd '##     '     '#### ' $@; \
+	    sd '##   '       '### ' $@; \
+	fi
+# Remove the heading for the top module
+	@sd '</code></pre>\n\n## $(subst /,.,$*)\n\n<pre class="Agda"><code class="Agda">' \
+	     '' $@
+# Remove superfluous white space:
+	@sd '<pre class="Agda"><code class="Agda">[ \n]*</code></pre>' '' $@
+	@sd '[ \n]+</code></pre>' '</code></pre>' $@
+	@sd '</code></pre>([ \n]*)<pre class="Agda"><code class="Agda">' '$$1' $@
+# Prepend front matter, and ensure a top-level heading:
+	@if grep -q '^# ' $@; then \
+	    sd -- '\A' '---\ntitle: $(*F)\n---\n\n' $@; \
+	else \
+	    sd -- '\A' '---\ntitle: $(*F)\n---\n\n# $(subst /,.,$*)\n\n' $@; \
+	fi
 # Use directory URLs:
 	@sd '(href="[A-Za-z][^"]*)\.html' '$$1/' $@
 # Replace `.`-separated filenames in URLs by `/`-separated paths:
