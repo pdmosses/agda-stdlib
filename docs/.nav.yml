@@ -4,9 +4,10 @@ nav:
     - installation-guide.md
   - README:
     - md/README/index.md
-    - md/README/*
+    - md/Everything/index.md
+    - md/EverythingSafe/index.md
+    - md/README/
   - Library:
-    - Library/index.md
     - md/index/index.md
     - md/*
   - HTML: html/index.html
