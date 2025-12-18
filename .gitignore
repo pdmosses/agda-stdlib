@@ -16,7 +16,8 @@
 _build
 .DS_Store
 .vscode/*
-docs/md
+/docs/html/
+/docs/md/
 dist
 dist-newstyle
 Everything.agda
@@ -27,8 +28,10 @@ failures
 GenerateEverything
 Haskell
 html
+/index.agda
+/index.sh
 log
 MAlonzo
 output
 runtests
-site
+/site/
