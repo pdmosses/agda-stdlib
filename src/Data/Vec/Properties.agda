@@ -36,7 +36,7 @@ open import Relation.Binary.PropositionalEquality.Properties
   using (module ≡-Reasoning)
 open import Relation.Unary using (Pred; Decidable)
 open import Relation.Nullary.Decidable.Core
-  using (Dec; does; yes; _×-dec_; map′)
+  using (Dec; does; yes; _×?_; map′)
 open import Relation.Nullary.Negation.Core using (contradiction)
 import Data.Nat.GeneralisedArithmetic as ℕ
 
@@ -76,7 +76,7 @@ toList-injective m≡n (x ∷ xs) (y ∷ ys) xs=ys =
 ≡-dec : DecidableEquality A → DecidableEquality (Vec A n)
 ≡-dec _≟_ []       []       = yes refl
 ≡-dec _≟_ (x ∷ xs) (y ∷ ys) = map′ (uncurry (cong₂ _∷_))
-  ∷-injective (x ≟ y ×-dec ≡-dec _≟_ xs ys)
+  ∷-injective (x ≟ y ×? ≡-dec _≟_ xs ys)
 
 ------------------------------------------------------------------------
 -- _[_]=_
@@ -462,6 +462,11 @@ map-insertAt : ∀ (f : A → B) (x : A) (xs : Vec A n) (i : Fin (suc n)) →
 map-insertAt f _ []        Fin.zero = refl
 map-insertAt f _ (x' ∷ xs) Fin.zero = refl
 map-insertAt f x (x' ∷ xs) (Fin.suc i) = cong (_ ∷_) (map-insertAt f x xs i)
+
+map-removeAt : ∀ (f : A → B) (xs : Vec A (suc n)) (i : Fin (suc n)) →
+               map f (removeAt xs i) ≡ removeAt (map f xs) i
+map-removeAt f (x ∷ xs) zero = refl
+map-removeAt f (x ∷ xs@(_ ∷ _)) (suc i) = cong (f x ∷_) (map-removeAt f xs i)
 
 map-[]≔ : ∀ (f : A → B) (xs : Vec A n) (i : Fin n) →
           map f (xs [ i ]≔ x) ≡ map f xs [ i ]≔ f x

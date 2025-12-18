@@ -33,13 +33,21 @@ open import Relation.Binary.Reasoning.Setoid S
 -- Export base lemmas that don't require the setoid
 
 open Base public
-  hiding (module Congruence)
+  hiding (module Congruence; sel⇒idem)
 
 -- Export congruence lemmas using reflexivity
 
 module Congruence {_∙_ : Op₂ A} (cong : Congruent₂ _∙_) where
 
   open Base.Congruence _≈_ cong refl public
+
+------------------------------------------------------------------------
+-- Selectivity
+
+module _ {_∙_ : Op₂ A} where
+
+  sel⇒idem : Selective _∙_ → Idempotent _∙_
+  sel⇒idem = Base.sel⇒idem _≈_
 
 ------------------------------------------------------------------------
 -- MiddleFourExchange
@@ -183,6 +191,15 @@ module _ {_∙_ : Op₂ A} (comm : Commutative _∙_) {e : A} where
       x ∙ y ≈⟨ xy≈xz ⟩
       x ∙ z ≈⟨ comm x z ⟩
       z ∙ x ∎
+
+module _ {_∙_ : Op₂ A} {e : A} where
+
+  identity⇒central : Identity e _∙_ → Central _∙_ e
+  identity⇒central (identityˡ , identityʳ) x = trans (identityˡ x) (sym (identityʳ x))
+
+  zero⇒central : Zero e _∙_ → Central _∙_ e
+  zero⇒central (zeroˡ , zeroʳ) x = trans (zeroˡ x) (sym (zeroʳ x))
+
 
 ------------------------------------------------------------------------
 -- Group-like structures
