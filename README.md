@@ -34,7 +34,7 @@ in glorious clickable HTML.
 > You can generate a website with hierarchical navigation menus and a toggle
 > for switching between light and dark mode.
 
-See https://pdmosses.github.io/agda-stdlib/ for a prototype.
+See https://pdmosses.github.io/agda-stdlib/2.4-dev/nav/ for a prototype.
 
 -   You can generate the website by the following commands:
     
@@ -60,7 +60,8 @@ See https://pdmosses.github.io/agda-stdlib/ for a prototype.
     with initial version `v` by:
     
     ```sh
-    make -f Makefile initial VERSION=v
+    make -f Makefile delete-all-deployed
+    make -f Makefile deploy VERSION=v
     ```
 
     A version selector is then shown at the top of each page. Version
@@ -68,17 +69,13 @@ See https://pdmosses.github.io/agda-stdlib/ for a prototype.
     are treated as ordinary versions, whereas other identifiers, like `devel`,
     are treated as development versions, and placed above ordinary versions.
 
-    You can deploy a new version and make it the *default* version by:
+    You can make an already-deployed version the *default* version by:
 
     ```sh
     make -f Makefile default VERSION=v
     ```
 
-    You can also deploy a new version *without* updating it to be the default:
-
-    ```sh
-    make -f Makefile extra VERSION=v
-    ```
+    Deploying a new version does *not* change the default.
 
     When deploying the generated website as a version, other versions of the
     website remain untouched. If a version is already deployed, redeployment
@@ -100,7 +97,7 @@ See https://pdmosses.github.io/agda-stdlib/ for a prototype.
     make -f Makefile serve-all
     ```
 
-See the [additional installation instructions](https://github.com/agda/agda-stdlib/blob/master/docs/installation-guide.md)
+See the [additional installation instructions](https://github.com/pdmosses/agda-stdlib/blob/gen-website/docs/installation-guide.md)
 for the software dependencies of the website generation.
 
 ## Installation instructions
