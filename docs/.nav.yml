@@ -8,7 +8,6 @@ nav:
     - Everything/index.md
     - EverythingSafe/index.md
     - '*'
-  # - HTML: index.html
 
 preserve_directory_names: true
 
