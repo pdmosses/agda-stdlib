@@ -42,6 +42,10 @@ Minor improvements
   Data.Nat.Combinatorics
   ```
 
+* In `Data.Vec.Relation.Binary.Pointwise.{Inductive,Extensional}`, the types of
+  `refl`, `sym`, and `trans` have been weakened to allow relations of different
+  levels to be used.
+
 Deprecated modules
 ------------------
 
@@ -209,6 +213,12 @@ Additions to existing modules
   ^-distribʳ-* : ∀ m n o → (n * o) ^ m ≡ n ^ m * o ^ m
   ```
 
+* In `Data.Product.Properties`:
+  ```agda
+  swap-↔ : (A × B) ↔ (B × A)
+  _,′-↔_ : A ↔ C → B ↔ D → (A × B) ↔ (C × D)
+  ```
+
 * In `Data.Vec.Properties`:
   ```agda
   map-removeAt : ∀ (f : A → B) (xs : Vec A (suc n)) (i : Fin (suc n)) →
@@ -252,6 +262,19 @@ Additions to existing modules
 
   padRight-updateAt : (m≤n : m ≤ n) (x : A) (xs : Vec A m) (f : A → A) (i : Fin m) →
                     updateAt (padRight m≤n x xs) (inject≤ i m≤n) f ≡ padRight m≤n x (updateAt xs i f)
+  ```
+
+* In `Data.Vec.Relation.Binary.Pointwise.Inductive`
+  ```agda
+  irrelevant : ∀ {_∼_ : REL A B ℓ} {n m} → Irrelevant _∼_ → Irrelevant (Pointwise _∼_ {n} {m})
+  antisym : ∀ {P : REL A B ℓ₁} {Q : REL B A ℓ₂} {R : REL A B ℓ} {m n} →
+            Antisym P Q R → Antisym (Pointwise P {m}) (Pointwise Q {n}) (Pointwise R)
+  ```
+
+* In `Data.Vec.Relation.Binary.Pointwise.Extensional`
+  ```agda
+  antisym : ∀ {P : REL A B ℓ₁} {Q : REL B A ℓ₂} {R : REL A B ℓ} {n} →
+            Antisym P Q R → Antisym (Pointwise P {n}) (Pointwise Q) (Pointwise R)
   ```
 
 * In `Relation.Nullary.Negation.Core`
