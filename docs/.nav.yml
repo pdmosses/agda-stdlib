@@ -1,16 +1,14 @@
 nav:
   - About:
-    - index.md
+    - nav.md
     - installation-guide.md
-  - README:
-    - md/README/index.md
-    - md/Everything/index.md
-    - md/EverythingSafe/index.md
-    - md/README/
+  - README/
   - Library:
-    - md/index/index.md
-    - md/*
-  - HTML: html/index.html
+    - index/index.md
+    - Everything/index.md
+    - EverythingSafe/index.md
+    - '*'
+  # - HTML: index.html
 
 preserve_directory_names: true
 

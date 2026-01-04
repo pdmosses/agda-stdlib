@@ -16,8 +16,10 @@
 _build
 .DS_Store
 .vscode/*
-/docs/html/
-/docs/md/
+/docs/*.css
+/docs/*.html
+/docs/*.js
+/docs/**/index.md
 dist
 dist-newstyle
 Everything.agda

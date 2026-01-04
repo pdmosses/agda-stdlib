@@ -6,18 +6,23 @@ The repository contains the following additional directory and files:
     - `docs/javascripts`: directory for added Javascript files
     - `docs/stylesheets`: directory for added CSS files
     - `docs/.nav.yml`: configuration file for navigation panels
-    - `docs/index.md`: Markdown source for the home page of the generated website
+    - `docs/nav.md`: the home page of the generated website
+    - `docs/installation-guide.md`: this page
 - `Makefile`: automation of website generation
 - `mkdocs.yml`: configuration file for the generated website
-- `installation-guide.md`: Markdown source for this page
 
-The repository does not contain any generated files. The `Makefile` generates
-files in the following directories:
+The repository does not contain any generated files.
 
-- `docs/html`: HTML files
-- `docs/md`: Markdown files
+The `Makefile` generates files in the docs directory:
 
-Moreover, building and deploying the generated website creates the directory `site`.
+- `docs/*.html`: HTML files
+- `docs/**/index.md`: Markdown files
+
+Moreover, building and deploying the generated website creates the directories
+`site` and `temp`.
+
+When they are not needed for browsing or deploying the website, the generated
+files can be removed by `make -f Makefile clean-all`.
 
 The following files need to be generated or updated before checking the
 library code and generating a website:
@@ -38,8 +43,10 @@ To avoid committing generated files to the current branch, the following lines
 have been added to `.gitignore`:
 
 ```
-/docs/html/
-/docs/md/
+/docs/*.css
+/docs/*.html
+/docs/*.js
+/docs/**/index.md
 /index.agda
 /index.sh
 /site/
@@ -47,19 +54,28 @@ have been added to `.gitignore`:
 
 ## Additional software dependencies
 
-- [GNU Make] (3.81)
-- [sd] (1.0.0)
-- [Python 3] (3.14.0)
-- [Pip] (25.2)
-- [MkDocs] (1.6.1)
-- [Material for MkDocs] (9.7.0)
 - [Awesome-nav] (3.2.0)
+- [GNU Make] (3.81)
+- [Material for MkDocs] (9.7.1)
 - [mike] (2.0.0)
+- [MkDocs] (1.6.1)
+- [pip] (25.3)
+- [Python 3] (3.14.0)
+- [sd] (1.0.0)
+
+[Awesome-nav]: https://lukasgeiter.github.io/mkdocs-awesome-nav/
+[GNU Make]: https://www.gnu.org/software/make/manual/make.html
+[Material for MkDocs]: https://squidfunk.github.io/mkdocs-material/getting-started/
+[mike]: https://github.com/jimporter/mike/
+[MkDocs]: https://www.mkdocs.org/getting-started/
+[pip]: https://pip.pypa.io/stable/
+[Python 3]: https://www.python.org/downloads/
+[sd]: https://github.com/chmln/sd/
 
 ## Platform dependencies
 
 The website generation has been developed and tested on MacBook laptops
-with Apple M1 and M3 chips running macOS Sequoia (15.5) with CLI Tools.
+with Apple M1 and M3 chips running macOS Sequoia (15.6) with CLI Tools.
 
 [GNU Make]: https://www.gnu.org/software/make/manual/make.html
 [sd]: https://github.com/chmln/sd/
