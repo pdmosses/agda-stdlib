@@ -18,7 +18,8 @@ An Agda standard library website
     [`Makefile`](https://github.com/pdmosses/agda-stdlib/blob/gen-website/Makefile),
     the [`mkdocs.yml`](https://github.com/pdmosses/agda-stdlib/blob/gen-website/mkdocs.yml)
     configuration file, and a `docs` directory that includes some fixed auxiliary files,
-    two Markdown files, and a small navigation panel specification file.
+    two Markdown files, and a small navigation panel specification file. See also the
+    [additional installation instructions](installation-guide.md).
 
     The theme [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
     with the [Awesome-Nav plugin](https://lukasgeiter.github.io/mkdocs-awesome-nav/)
