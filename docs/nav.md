@@ -63,6 +63,22 @@ An Agda standard library website
     that the website has 2310 pages containing 2,311,407 internal links
     (ignoring (S)CSS links), all valid.
 
+!!! warning
+
+    Search works best for websites where each page is divided into small
+    sections. It is currently of limited use for websites generated from
+    large Agda modules. Moreover, it appears that some ASCII characters
+    do not produce the expected results (even when escaped by `\`).
+
+!!! tip
+
+    Searching for `foo bar` returns the list of pages that contain `foo`
+    ***and/or*** `bar`. To search for pages that contain ***both*** words,
+    use `+foo +bar`, and `+foo -bar` for pages that contain `foo` but
+    ***not*** `bar`.
+
+!!! info
+
     The rest of this file was copied from the
     [README](https://github.com/agda/agda-stdlib/blob/master/README.md) page
     of the official [library repository](https://github.com/agda/agda-stdlib/).
