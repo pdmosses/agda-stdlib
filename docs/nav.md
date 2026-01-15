@@ -60,7 +60,7 @@ An Agda standard library website
     75 seconds, and `deploy` takes about 100 seconds.
 
     The [`linkcheck`](https://github.com/filiph/linkcheck/) application reports
-    that the website has 2310 pages containing 2,311,407 internal links
+    that the website has 2310 pages containing 2,310,253 internal links
     (ignoring (S)CSS links), all valid.
 
 !!! warning
