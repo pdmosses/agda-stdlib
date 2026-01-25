@@ -21,6 +21,14 @@ Non-backwards compatible changes
 Minor improvements
 ------------------
 
+* The types of `Data.Vec.Base.{truncate|padRight}` have been weakened so
+  that the argument of type `m ≤ n` is marked as irrelevant. This should be
+  backwards compatible, but does change the intensional behaviour of these
+  functions to be more eager, because no longer blocking on pattern matching
+  on that argument. Corresponding changes have been made to the types of their
+  properties (and their proofs). In particular, `truncate-irrelevant` is now
+  deprecated, because definitionally trivial.
+
 * The type of `Relation.Nullary.Negation.Core.contradiction-irr` has been further
   weakened so that the negated hypothesis `¬ A` is marked as irrelevant. This is
   safe to do, in view of `Relation.Nullary.Recomputable.Properties.¬-recompute`.
@@ -66,6 +74,11 @@ Deprecated names
   ```agda
   ¬∀⟶∃¬-smallest  ↦   ¬∀⇒∃¬-smallest
   ¬∀⟶∃¬-          ↦   ¬∀⇒∃¬
+  ```
+
+* In `Data.Vec.Properties`:
+  ```agda
+  truncate-irrelevant  ↦  Relation.Binary.PropositionalEquality.Core.refl
   ```
 
 * In `Relation.Nullary.Decidable.Core`:
@@ -155,6 +168,20 @@ Additions to existing modules
   ⊕-∧-booleanRing   : BooleanRing _ _
   ```
 
+* In `Algebra.Module.Properties.LeftModule`:
+  ```agda
+  -1#*ₗm≈-ᴹm : ∀ m → - 1# *ₗ m ≈ᴹ -ᴹ m
+  -‿distrib-*ₗ : ∀ r m → - r *ₗ m ≈ᴹ -ᴹ (r *ₗ m)
+  -ᴹ‿distrib-*ₗ : ∀ r m → r *ₗ (-ᴹ m) ≈ᴹ -ᴹ (r *ₗ m)
+  ```
+
+* In `Algebra.Module.Properties.RightModule`:
+  ```agda
+  -1#*ₗm≈-ᴹm : m*ᵣ-1#≈-ᴹm : ∀ m → m *ᵣ (- 1#) ≈ᴹ -ᴹ m
+  -‿distrib-*ᵣ : ∀ m r → m *ᵣ (- r) ≈ᴹ -ᴹ (m *ᵣ r)
+  -ᴹ‿distrib-*ᵣ : ∀ m r → (-ᴹ m) *ᵣ r ≈ᴹ -ᴹ (m *ᵣ r)
+  ```
+
 * In `Algebra.Properties.RingWithoutOne`:
   ```agda
   [-x][-y]≈xy : ∀ x y → - x * - y ≈ x * y
@@ -222,19 +249,20 @@ Additions to existing modules
 * In `Data.Vec.Properties`:
   ```agda
   map-removeAt : ∀ (f : A → B) (xs : Vec A (suc n)) (i : Fin (suc n)) →
-               map f (removeAt xs i) ≡ removeAt (map f xs) i
+                 map f (removeAt xs i) ≡ removeAt (map f xs) i
 
   updateAt-take : (xs : Vec A (m + n)) (i : Fin m) (f : A → A) →
                   updateAt (take m xs) i f ≡ take m (updateAt xs (inject≤ i (m≤m+n m n)) f)
 
-  truncate-zipWith : (f : A → B → C) (m≤n : m ≤ n) (xs : Vec A n) (ys : Vec B n) →
-                    truncate m≤n (zipWith f xs ys) ≡ zipWith f (truncate m≤n xs) (truncate m≤n ys)
+  truncate-zipWith : (f : A → B → C) .(m≤n : m ≤ n) (xs : Vec A n) (ys : Vec B n) →
+                     truncate m≤n (zipWith f xs ys) ≡ zipWith f (truncate m≤n xs) (truncate m≤n ys)
 
-  truncate-zipWith-truncate : (f : A → B → C) (m≤n : m ≤ n) (n≤o : n ≤ o) (xs : Vec A o) (ys : Vec B n) →
+  truncate-zipWith-truncate : (f : A → B → C) .(m≤n : m ≤ n) .(n≤o : n ≤ o)
+                              (xs : Vec A o) (ys : Vec B n) →
                               truncate m≤n (zipWith f (truncate n≤o xs) ys) ≡
                               zipWith f (truncate (≤-trans m≤n n≤o) xs) (truncate m≤n ys)
 
-  truncate-updateAt : (m≤n : m ≤ n) (xs : Vec A n) (i : Fin m) (f : A → A) →
+  truncate-updateAt : .(m≤n : m ≤ n) (xs : Vec A n) (i : Fin m) (f : A → A) →
                       updateAt (truncate m≤n xs) i f ≡
                       truncate m≤n (updateAt xs (inject≤ i m≤n) f)
 
@@ -242,26 +270,64 @@ Additions to existing modules
                       updateAt (truncate (m≤m+n m n) xs) i f ≡
                       truncate (m≤m+n m n) (updateAt xs (inject≤ i (m≤m+n m n)) f)
 
-  map-truncate : (f : A → B) (m≤n : m ≤ n) (xs : Vec A n) →
-                map f (truncate m≤n xs) ≡ truncate m≤n (map f xs)
+  map-truncate : (f : A → B) .(m≤n : m ≤ n) (xs : Vec A n) →
+                 map f (truncate m≤n xs) ≡ truncate m≤n (map f xs)
 
-  padRight-lookup : (m≤n : m ≤ n) (a : A) (xs : Vec A m) (i : Fin m) → lookup (padRight m≤n a xs) (inject≤ i m≤n) ≡ lookup xs i
+  padRight-lookup : .(m≤n : m ≤ n) (a : A) (xs : Vec A m) (i : Fin m) →
+                    lookup (padRight m≤n a xs) (inject≤ i m≤n) ≡ lookup xs i
 
-  padRight-map : (f : A → B) (m≤n : m ≤ n) (a : A) (xs : Vec A m) → map f (padRight m≤n a xs) ≡ padRight m≤n (f a) (map f xs)
+  padRight-map : (f : A → B) .(m≤n : m ≤ n) (a : A) (xs : Vec A m) →
+                 map f (padRight m≤n a xs) ≡ padRight m≤n (f a) (map f xs)
 
-  padRight-zipWith : (f : A → B → C) (m≤n : m ≤ n) (a : A) (b : B) (xs : Vec A m) (ys : Vec B m) →
-                   zipWith f (padRight m≤n a xs) (padRight m≤n b ys) ≡ padRight m≤n (f a b) (zipWith f xs ys)
+  padRight-zipWith : (f : A → B → C) .(m≤n : m ≤ n) (a : A) (b : B)
+                     (xs : Vec A m) (ys : Vec B m) →
+                     zipWith f (padRight m≤n a xs) (padRight m≤n b ys) ≡
+                     padRight m≤n (f a b) (zipWith f xs ys)
 
-  padRight-zipWith₁ : (f : A → B → C) (o≤m : o ≤ m) (m≤n : m ≤ n) (a : A) (b : B) (xs : Vec A m) (ys : Vec B o) →
-                    zipWith f (padRight m≤n a xs) (padRight (≤-trans o≤m m≤n) b ys) ≡
-                    padRight m≤n (f a b) (zipWith f xs (padRight o≤m b ys))
+  padRight-zipWith₁ : (f : A → B → C) .(o≤m : o ≤ m) .(m≤n : m ≤ n) (a : A) (b : B)
+                      (xs : Vec A m) (ys : Vec B o) →
+                      zipWith f (padRight m≤n a xs) (padRight (≤-trans o≤m m≤n) b ys) ≡
+                      padRight m≤n (f a b) (zipWith f xs (padRight o≤m b ys))
 
-  padRight-take : (m≤n : m ≤ n) (a : A) (xs : Vec A m) .(n≡m+o : n ≡ m + o) → take m (cast n≡m+o (padRight m≤n a xs)) ≡ xs
+  padRight-take : .(m≤n : m ≤ n) (a : A) (xs : Vec A m) .(n≡m+o : n ≡ m + o) →
+                  take m (cast n≡m+o (padRight m≤n a xs)) ≡ xs
 
-  padRight-drop : (m≤n : m ≤ n) (a : A) (xs : Vec A m) .(n≡m+o : n ≡ m + o) → drop m (cast n≡m+o (padRight m≤n a xs)) ≡ replicate o a
+  padRight-drop : .(m≤n : m ≤ n) (a : A) (xs : Vec A m) .(n≡m+o : n ≡ m + o) →
+                  drop m (cast n≡m+o (padRight m≤n a xs)) ≡ replicate o a
 
-  padRight-updateAt : (m≤n : m ≤ n) (x : A) (xs : Vec A m) (f : A → A) (i : Fin m) →
-                    updateAt (padRight m≤n x xs) (inject≤ i m≤n) f ≡ padRight m≤n x (updateAt xs i f)
+  padRight-updateAt : .(m≤n : m ≤ n) (x : A) (xs : Vec A m) (f : A → A) (i : Fin m) →
+                      updateAt (padRight m≤n x xs) (inject≤ i m≤n) f ≡
+                      padRight m≤n x (updateAt xs i f)
+  ```
+
+* In `Relation.Binary.Construct.Add.Extrema.NonStrict`:
+  ```agda
+  ≤±-respˡ-≡ : _≤±_ Respectsˡ _≡_
+  ≤±-respʳ-≡ : _≤±_ Respectsʳ _≡_
+  ≤±-resp-≡ : _≤±_ Respects₂ _≡_
+  ≤±-respˡ-≈± : _≤_ Respectsˡ _≈_ → _≤±_ Respectsˡ _≈±_
+  ≤±-respʳ-≈± : _≤_ Respectsʳ _≈_ → _≤±_ Respectsʳ _≈±_
+  ≤±-resp-≈± : _≤_ Respects₂ _≈_ → _≤±_ Respects₂ _≈±_
+  ```
+
+* In `Relation.Binary.Construct.Add.Infimum.NonStrict`:
+  ```agda
+  ≤₋-respˡ-≡ : _≤₋_ Respectsˡ _≡_
+  ≤₋-respʳ-≡ : _≤₋_ Respectsʳ _≡_
+  ≤₋-resp-≡ : _≤₋_ Respects₂ _≡_
+  ≤₋-respˡ-≈₋ : _≤_ Respectsˡ _≈_ → _≤₋_ Respectsˡ _≈₋_
+  ≤₋-respʳ-≈₋ : _≤_ Respectsʳ _≈_ → _≤₋_ Respectsʳ _≈₋_
+  ≤₋-resp-≈₋ : _≤_ Respects₂ _≈_ → _≤₋_ Respects₂ _≈₋_
+  ```
+
+* In `Relation.Binary.Construct.Add.Extrema.Supremum.NonStrict`:
+  ```agda
+  ≤⁺-respˡ-≡ : _≤⁺_ Respectsˡ _≡_
+  ≤⁺-respʳ-≡ : _≤⁺_ Respectsʳ _≡_
+  ≤⁺-resp-≡ : _≤⁺_ Respects₂ _≡_
+  ≤⁺-respˡ-≈⁺ : _≤_ Respectsˡ _≈_ → _≤⁺_ Respectsˡ _≈⁺_
+  ≤⁺-respʳ-≈⁺ : _≤_ Respectsʳ _≈_ → _≤⁺_ Respectsʳ _≈⁺_
+  ≤⁺-resp-≈⁺ : _≤_ Respects₂ _≈_ → _≤⁺_ Respects₂ _≈⁺_
   ```
 
 * In `Data.Vec.Relation.Binary.Pointwise.Inductive`
@@ -289,8 +355,29 @@ Additions to existing modules
   [_]⊢_ : (A → B) → Pred A ℓ → Pred B _
   ```
 
+* In `Relation.Unary.Properties`
+  ```agda
+  _map-⊢_   : P ⊆ Q → f ⊢ P ⊆ f ⊢ Q
+  map-⟨_⟩⊢_ : P ⊆ Q → ⟨ f ⟩⊢ P ⊆ ⟨ f ⟩⊢ Q
+  map-[_]⊢_ : P ⊆ Q → [ f ]⊢ P ⊆ [ f ]⊢ Q
+  ⟨_⟩⊢⁻_    : ⟨ f ⟩⊢ P ⊆ Q → P ⊆ f ⊢ Q
+  ⟨_⟩⊢⁺_    : P ⊆ f ⊢ Q → ⟨ f ⟩⊢ P ⊆ Q
+  [_]⊢⁻_    : Q ⊆ [ f ]⊢ P → f ⊢ Q ⊆ P
+  [_]⊢⁺_    : f ⊢ Q ⊆ P → Q ⊆ [ f ]⊢ P
+  ```
+
 * In `System.Random`:
   ```agda
   randomIO : IO Bool
   randomRIO : RandomRIO {A = Bool} _≤_
+  ```
+
+* In Relation.Unary.Properites
+  ```agda
+  ¬∃⟨P⟩⇒Π[∁P] : ¬ ∃⟨ P ⟩ → Π[ ∁ P ]
+  ¬∃⟨P⟩⇒∀[∁P] : ¬ ∃⟨ P ⟩ → ∀[ ∁ P ]
+  ∃⟨∁P⟩⇒¬Π[P] : ∃⟨ ∁ P ⟩ → ¬ Π[ P ]
+  ∃⟨∁P⟩⇒¬∀[P] : ∃⟨ ∁ P ⟩ → ¬ ∀[ P ]
+  Π[∁P]⇒¬∃[P] : Π[ ∁ P ] → ¬ ∃⟨ P ⟩
+  ∀[∁P]⇒¬∃[P] : ∀[ ∁ P ] → ¬ ∃⟨ P ⟩
   ```

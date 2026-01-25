@@ -33,6 +33,7 @@ html
 /index.agda
 /index.sh
 log
+logs/
 MAlonzo
 output
 runtests
