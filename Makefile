@@ -398,12 +398,14 @@ endif
 # are treated as ordinary versions, whereas other identifiers, like devel,
 # are treated as development versions, and placed above ordinary versions.
 
-# `make default VERSION=...` simply sets a deployed VERSION as the default,
-# without deploying the generated website.
+# `make default VERSION=...` sets a previously deployed version as the default,
+# *without* deploying the generated website. It also creates or updates the
+# alias `default` to point to the default version.
 
 .PHONY: default
 default:
 ifdef VERSION
+	@mike alias $(VERSION) default --update-aliases
 	@mike set-default $(VERSION) --allow-empty --push
 	@echo "The default version is now $(VERSION)"
 else
