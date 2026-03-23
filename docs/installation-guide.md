@@ -54,12 +54,13 @@ have been added to `.gitignore`:
 
 ## Additional software dependencies
 
-- [Awesome-nav] (3.2.0)
+- [Agda] (2.8.0)
+- [Awesome-nav] (3.3.0)
 - [GNU Make] (3.81)
-- [Material for MkDocs] (9.7.1)
+- [Material for MkDocs] (9.7.6)
 - [mike] (2.0.0)
 - [MkDocs] (1.6.1)
-- [pip] (25.3)
+- [pip] (26.0.1)
 - [Python 3] (3.14.0)
 - [sd] (1.0.0)
 
@@ -75,7 +76,7 @@ have been added to `.gitignore`:
 ## Platform dependencies
 
 The website generation has been developed and tested on MacBook laptops
-with Apple M1 and M3 chips running macOS Sequoia (15.6) with CLI Tools.
+with Apple M1 and M3 chips running macOS Tahoe (26.3) with CLI Tools.
 
 [GNU Make]: https://www.gnu.org/software/make/manual/make.html
 [sd]: https://github.com/chmln/sd/
