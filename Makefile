@@ -7,76 +7,77 @@ https://pdmosses.github.io/agda-material/
 # Peter Mosses (@pdmosses)
 
 # This Makefile, mkdocs.yml, and docs/{javascripts,stylesheets} were copied
-# from v0.1.0 (with main branch updates 2026-01-15) of the Agda-Material repo.
+# from Agda-Material (17-03-2026).
 
 # MAIN CHANGES
 # The Makefile has been edited as follows to generate a Agda-Stdlib website.
-# - variables DIR, ROOT, HTML, MD: custom values
+# - variables DIR, ROOT, HTML, MD, INDEX: custom values
 # - targets gen-html, gen-md, clean-all: automatic removal of outdated files
 
-# REQUIREMENTS
+# ASSUMPTIONS
 # The following files and directories are generated, and can be deleted:
 # - docs/*.html
 # - subdirectories of docs that contain index.md files
 
 ##############################################################################
-# MAIN TARGETS                        TIME TAKEN FOR AGDA-STDLIB LIBRARY
+# MAIN TARGETS
 
-# SHOW EXPLANATIONS:
-# make help                           <1 second
+# N.B. With GNU Make, `make ...` uses `GNUMakefile` as the default.
+# Always run `make -f Makefile ...` instead of `make ...`.
 
-# CHECK THE AGDA CODE:
-# make check                          15 seconds
+# HELP
+#
+# make help 
 
-# GENERATE AND BROWSE A WEBSITE:
-# make web                            75 seconds
-# make serve                          70 seconds
+# CHECK THE AGDA CODE
+#
+# make check
 
-# DEPLOY A GENERATED WEBSITE:
-# make deploy                        100 seconds
-# make deploy  VERSION=...
+# GENERATE AND BROWSE A WEBSITE
+#
+# make web  
+# make serve
 
-# MANAGE VERSIONS:
-# make default VERSION=...
-# make delete  VERSION=...
-# make delete-all-deployed
-# make list-all-deployed
+# DEPLOY AN UNVERSIONED WEBSITE
+#
+# make deploy
 
-# N.B. To deploy website versions, uncomment the following lines in mkdocs.yml:
+# REMOVE GENERATED FILES
+#
+# make clean-all
+
+# MANAGE VERSIONED DEPLOYMENT
+#
+# N.B. Before using `make start-versioning`, uncomment the following lines
+# in mkdocs.yml:
+#
 # extra:
 #   version:
 #     provider: mike
+#
 # The `mike` commands documented at https://github.com/jimporter/mike/ provide
-# more general version management possibilities.
-
-# REMOVE ALL GENERATED FILES:
-# make clean-all                      <1 second
-
-# SHOW VARIABLE VALUES:
-# make debug                          <1 second
+# more general version management possibilities than this Makefile. See also:
+# https://blog.lx862.com/blog/2025-06-10-versioning-with-material-mkdocs/
+#
+# make start-versioning
+# make deploy  VERSION=...
+# make default VERSION=...
+# make delete  VERSION=...
+# make list-versions
 
 ##############################################################################
-# COMMAND LINE ARGUMENTS
+# ARGUMENTS
 #
 # Name    Purpose
 # -----------------------------
 # DIR     Agda import include-paths
 # ROOT    Agda root modules
-#
-# VERSION for managing versioned websites
-#
 # HTML    generated directory for HTML files
 # MD      generated directory for Markdown files
-# SITE    generated directory for deploying the website
+# INDEX   used for index.html page when HTML = docs 
+# SITE    generated website
 # TEMP    temporary directory
-
-# N.B. The variables HTML and MD affect the URLs of the generated pages.
-# With the above defaults, the URLs of pages in the HTML section of a
-# generated website are prefixed by `html/`, and the URLS of the other
-# generated pages are prefixed by `md/`. It is possible to eliminate those
-# prefixes by setting both variables to `docs`. However, the generation of
-# pages directly in `docs` may then overwrite non-generated files (depending
-# on the names of the Agda modules loaded by ROOT).
+# VERSION used for managing versioned websites
 
 # ARGUMENT DEFAULT VALUES
 
@@ -88,14 +89,45 @@ ROOT    := index
 
 HTML    := docs
 MD      := docs
+
+# N.B. The variables HTML and MD affect the URLs of the generated pages.
+# With the above defaults, the URLs of pages in the HTML section of a
+# generated website are prefixed by `html/`, and the URLS of the other
+# generated pages are prefixed by `md/`. It is possible to eliminate those
+# prefixes by setting both variables to `docs`. However, the generation of
+# pages directly in `docs` may then overwrite non-generated files (depending
+# on the names of the Agda modules loaded by ROOT).
+
+INDEX := index_
+
+# If ROOT = index and HTML = docs, the generated page at docs/index.html
+# overrides the website home page (automatically rendered by MkDocs from
+# docs/index.md or docs/README.md), and interferes with versioning.
+# Set INDEX to a name that is different from all imported module names  
+# to generate the page at docs/$(INDEX).html and avoid these issues.
+
 SITE    := site
 TEMP    := temp
 
+# VERSION := ???
+#
+# The variable VERSION is an optional command argument.
+# If it is set in this file, unversioned deployment is *not* supported.
+
 # All files in the docs directory are rendered in the generated website
 # (except for docs/.* files and files explicitly excluded in mkdocs.yml).
+# Setting HTML to a directory *not* in docs suppresses the inclusion of
+# the HTML in the website.
 
 # Top-level navigation links are specified in docs/.nav.yml; the lower
 # navigation levels reflect the directory hierarchy of the source files.
+# The Awesome-Nav plugin documentation explains the docs/.nav.yml settings,
+# see https://lukasgeiter.github.io/mkdocs-awesome-nav/
+
+# N.B. docs/.nav.yml is *not* automatically updated when the settings of
+# ROOT, HTML, and MD are changed. When serving or deploying the generated
+# website, MkDocs reports any broken navigation links in docs/.nav.yml,
+# and any generated pages that are not accessible via the navigation.
 
 # The default docs and site directories can be changed in mkdocs.yml,
 # see https://www.mkdocs.org/user-guide/configuration/#build-directories
@@ -104,13 +136,13 @@ TEMP    := temp
 # CONTENTS
 #
 # VARIABLES
-# HELPFUL TARGETS
+# HELP
 # CHECK THE AGDA CODE
-# GENERATE A WEBSITE
-# BROWSE THE GENERATED WEBSITE
-# DEPLOY A WEBSITE AND MANAGE VERSIONS
+# GENERATE AND BROWSE A WEBSITE
+# DEPLOY AN UNVERSIONED WEBSITE
 # REMOVE GENERATED FILES
-# HELPFUL TEXTS
+# MANAGE VERSIONED DEPLOYMENT
+# DEBUG
 
 ##############################################################################
 # VARIABLES
@@ -155,8 +187,12 @@ AGDA-QUIET   := $(AGDA) --trace-imports=0
 
 AGDA-VERBOSE := $(AGDA) --trace-imports=3
 
+# Force sequential execution of phony prerequisites:
+
+.NOTPARALLEL:
+
 ##############################################################################
-# HELPFUL TARGETS
+# HELP
 
 # `make` without a target is equivalent to `make help`. It lists the main
 # targets and their purposes:
@@ -166,9 +202,34 @@ export HELP
 help:
 	@echo "$$HELP"
 
-# Force sequential execution of phony prerequisites:
+define HELP
 
-.NOTPARALLEL:
+make (or make help)
+  Display this list of make targets
+make check
+  Check loading the Agda source files for $(ROOT-FILES)
+
+make web
+  Generate a website for $(ROOT-FILES)
+make serve
+  Browse the generated website using a local server
+make deploy
+  Deploy an UNVERSIONED website on GitHub Pages 
+make clean-all
+  Remove all generated files
+
+make start-versioning
+  Clear any deployed unversioned website
+make deploy VERSION=v
+  Deploy version v of the generated website on GitHub Pages
+make default VERSION=v
+  Set version v as the default version and as the alias `default`
+make delete VERSION=v
+  Remove deployed version v from GitHub Pages
+make list-versions
+  Display a list of all deployed versions
+
+endef
 
 ##############################################################################
 # CHECK THE AGDA CODE
@@ -181,18 +242,19 @@ help:
 check: 
 	@for f in $(ROOT-FILES); do \
 	  { $(AGDA-QUIET) $$f 2>&1 > /dev/null && \
-	    echo "Checking $$f finished"; } || \
+	    echo "Checked $$f"; } || \
 	  { $(AGDA-VERBOSE) $$f 2>&1 | sed -e 's#$(PROJECT)/##'; \
-	    echo "Checking $$f abandoned"; \
+	    echo "Abandoned checking $$f"; \
 	    exit; } \
 	  done
 	
 ##############################################################################
+# GENERATE AND BROWSE A WEBSITE
+
 # GENERATE A WEBSITE
 
 .PHONY: web
 web: gen-html gen-md
-	@echo "Website generated"
 
 # Generate HTML files in the HTML directory:
 
@@ -213,6 +275,7 @@ ifneq ($(filter docs docs/%,$(HTML)),)
 #	- set m to A.B, and i to "", resp. ".index";
 #	- set d such that $(HTML)/$$d is a path to docs/;
 #	- set u such that docs/$$u is a path to $(MD)/A/B/ .
+#	When f = docs/index.html, f is moved to docs/$(INDEX).html.
 	@d=$$(echo $(patsubst docs/%,%,$(HTML)/) | sd '[^/]*/' '../'); \
 	for f in $(HTML)/*.html; do \
 	    p=$${f#$(HTML)/}; \
@@ -225,12 +288,17 @@ ifneq ($(filter docs docs/%,$(HTML)),)
 	    sd "<a id=\"([^\"]+)\" href=\"$$m$$i.html\" class=\"Module\">" \
 	       "<a id=\"$$1\" href=\"$$d$$u\" class=\"Module Definition\">" \
 	       $$f; \
+	    if [[ "$$f" == docs/index.html ]]; then \
+	        mv $$f docs/$(INDEX).html; \
+	    fi; \
 	done
 # 	Add CSS to highlight the module definitions:
 	@printf "\n%s {\n  %s\n  %s\n}" ".Agda a.Module.Definition" \
 		"text-decoration: underline;" \
 		"font-weight: bold;" \
 	    >> $(HTML)/Agda.css
+	@echo "Generated HTML pages in $(HTML)"
+
 endif
 
 # Generate Markdown files in the MD directory:
@@ -289,6 +357,9 @@ gen-md: clean-md
 #	Assumption: For all m, module m and module m.index do not both exist.
 #	When f = $(TEMP)/A.B.x or $(TEMP)/A.B.index.x: set m to A.B,
 #	t to $(MD)/A/B/index.md, and d to the relative path ../../ of $(MD).
+#	Also set u to the URL of the MD page, and h to HTML without the docs/.
+#	When HTML is a sub-directory of docs, link the module name definition
+#	in MD to the HTML page.
 #
 	@r=$$(echo $(patsubst docs/%,%,$(MD)/) | sd '[^/]*/' '../'); \
 	for f in $(TEMP)/*; do \
@@ -342,11 +413,13 @@ gen-md: clean-md
 	  u=$${m//\./\/}/; \
 	  h=$(patsubst docs/%,%,$(HTML)/); \
 	  if [ -z "$$h" ] || [ "$$h" != $(HTML)/ ]; then \
+	    if [ "$$m$$i" == index ]; then m=$(INDEX); fi; \
 	    sd "<a id=\"([^\"]+)\" href=\"$$d$$u\" class=\"Module\">" \
 	       "<a id=\"$$1\" href=\"$$d$$r$$h$$m$$i.html\" class=\"Module Definition\">" \
 	       $$t; \
 	  fi; \
 	done
+	@echo "Generated MD pages in $(MD)"
 
 # The links generated by Agda always start with the file name. This could be
 # removed for local links where the target is in the same file. Similarly, the
@@ -355,7 +428,6 @@ gen-md: clean-md
 # As with the generation of HTML files in the HTML directory, it is left to
 # the user to identify and delete outdated `*.md` files manually when MD=docs.
 
-##############################################################################
 # BROWSE THE GENERATED WEBSITE
 
 # `make serve` provides a local preview of a generated website (ignoring any
@@ -363,92 +435,40 @@ gen-md: clean-md
 
 .PHONY: serve
 serve:
-	@mkdocs serve --livereload  --dev-addr localhost:8002
+	@mkdocs serve --livereload --dev-addr localhost:8004
 
 ##############################################################################
-# DEPLOY A WEBSITE AND MANAGE VERSIONS
+# DEPLOY AN UNVERSIONED WEBSITE
 
-# The variable VERSION is the name of an optional command argument.
-# It must NOT be defined in this file!
+# `make deploy` publishes a website on GitHub Pages *without* versioning.
+# If the website is already deployed as versioned, it first needs to be
+# *completely* cleared using `mike delete --all --push`.
 
-# `make deploy` publishes an unversioned website on GitHub Pages;
-# `make deploy VERSION=v` publishes version v of the website:
+# N.B. To prevent inadvertent overwriting of a previously-deployed *versioned*
+# website, deploying an *unversioned* website requires `mike` to be installed.
 
 .PHONY: deploy
-deploy:
+
 ifndef VERSION
+deploy:
 	@if [[ -z "$$(mike list)" ]]; then \
 	    mkdocs gh-deploy --force --ignore-version; \
 	else \
-	    echo "Unversioned website deployment blocked by deployed versions"; \
+	    echo "Error: unversioned deployment blocked by deployed version(s)."; \
+	    echo "To deploy an update to version ..., use 'make deploy VERSION=...'."; \
+	    echo "To clear ALL deployed versions, use 'mike delete --all --push'."; \
 	fi
-else
-	@mike deploy $(VERSION) --push
-	@echo "Deployed generated website as version $(VERSION)"
 endif
 
-# (The `ignore-version` option is added due to an potential conflict
-# between mkdocs and mike version numbers.)
+# The target `deploy` is defined differently when VERSION is set (see below).
 
-# The make commands for deploying or deleting a version require VERSION to be
-# defined by passing it as an argument.
-
-# It is recommended to omit patch numbers in semantic versioning.
-# Version identifiers that "look like" versions (e.g. 1.2.3, 1.0b1, v1.0)
-# are treated as ordinary versions, whereas other identifiers, like devel,
-# are treated as development versions, and placed above ordinary versions.
-
-# `make default VERSION=...` sets a previously deployed version as the default,
-# *without* deploying the generated website. It also creates or updates the
-# alias `default` to point to the default version.
-
-.PHONY: default
-default:
-ifdef VERSION
-	@mike alias $(VERSION) default --update-aliases
-	@mike set-default $(VERSION) --allow-empty --push
-	@echo "The default version is now $(VERSION)"
-else
-	@echo "Error: missing VERSION=..."
-endif
-
-# `make delete VERSION=...`:
-#  - removes a deployed version of a website.
-
-# If VERSION is set as the default version, this can break existing links to
-# the website! To avoid that, first use `make default` to set the default to
-# a different version.
-
-.PHONY: delete
-delete:
-ifdef VERSION
-	@mike delete $(VERSION) --allow-empty --push
-	@echo "Deleted deployed version $(VERSION)"
-else
-	@echo "Error: missing VERSION=..."
-endif
-
-# `make delete-all-deployed` clears the deployed site.
-
-.PHONY: delete-all-deployed
-delete-all-deployed:
-ifndef VERSION
-	@mike delete --all --allow-empty --push
-	@echo "Deleted the deployed website"
-else
-	@echo "Error: superfluous VERSION=..."
-endif
-
-# `make list-all-deployed` lists all currently-deployed versions.
-
-.PHONY: list-all-deployed
-list-all-deployed:
-	@mike list
+# Note: `mkdocs gh-deploy --ignore-version` allows the version of `mkdocs`
+# to differ from the previous deployment. It is unrelated to website versions.
 
 ##############################################################################
 # REMOVE GENERATED FILES
 
-# `make clean-all` removes all generated files.
+# `make clean-all` removes generated files.
 
 .PHONY: clean-all
 clean-all: clean-html clean-md
@@ -463,8 +483,7 @@ clean-all: clean-html clean-md
 # the user to identify and delete outdated `*.html` files manually when
 # HTML=docs. Similarly for the generated directories in MD when MD=docs.
 
-# Agda-Stdlib only:
-# The files docs/*.{html,css,js} are all generated.
+# Assumption: the docs/*.{html,md,css,js} files are all generated
 
 .PHONY: clean-html
 clean-html:
@@ -474,52 +493,116 @@ else
 	@rm -rf $(HTML)
 endif
 
-# Agda-Stdlib only:
-# The subdirectories of docs that include index.md are all generated.
+# Assumption: the subdirectories of docs that include index.md files are all generated
 
 .PHONY: clean-md
 clean-md:
 ifeq ($(MD),docs)
 	@rm -rf $(shell \
-		    find docs/* -name index.md | \
+		    find docs/*/* -name index.md | \
 		    sd '(docs/[^/]*)/.*index\.md' '$$1' | sort -u)
 else
 	@rm -rf $(MD)
 endif
 
 ##############################################################################
-# HELPFUL TEXTS
+# MANAGE VERSIONED DEPLOYMENT
 
-define HELP
+# N.B. The following commands use `mike` to push commits to the `gh-pages`
+# branch, This starts a GitHub Action to deploy the updated website. If a
+# new command is run before the action from the previous command has finished,
+# the action may be aborted, causing a failed run. To avoid such issues,
+# run a series of `mike` commands directly, including the `--push` option only
+# in the last command.
 
-make (or make help)
-  Display this list of make targets
-make check
-  Check loading the Agda source files for $(ROOT-FILES)
-make web
-  Generate a website for $(ROOT-FILES)
-make serve
-  Browse the generated website  using a local server
-make deploy
-  Deploy an UNVERSIONED website on GitHub Pages 
-make deploy VERSION=v
-  Deploy version v of the generated website on GitHub Pages
-make default VERSION=v
-  Set version v as the default version
-make delete VERSION=v
-  Remove deployed version v from GitHub Pages
-make delete-all-deployed
-  Remove the deployed website from GitHub Pages
-make list-all-deployed
-  Display a list of all deployed versions
-make clean-all
-  Remove all generated files
+# START VERSIONING
 
-endef
+# `make start-versioning` clears a deployed *unversioned* site, in preparation
+# for versioned deployment.
+#
+# To completely clear a *versioned* site, use `mike delete --all --push`.
 
-# Note: all make commands load $(ROOT) to initialize HTML-FILES
+# N.B. Before running `make start-versioning`, check that `mike` is installed,
+# and uncomment the following lines in mkdocs.yml:
+#
+# extra:
+#   version:
+#     provider: mike
 
-# `make debug` shows the values of most of the variables assigned in this file:
+.PHONY: start-versioning
+start-versioning:
+ifndef VERSION
+	@if [[ -z "$$(mike list)" ]]; then \
+	    mike delete --all --allow-empty --push; \
+	    echo "Cleared any deployed unversioned website"; \
+	else \
+	    echo "Error: blocked by currently deployed version(s)"; \
+	    echo "To clear ALL deployed versions, use 'mike delete --all --push'"; \
+	fi
+else
+	@echo "Error: superfluous VERSION argument; start-versioning abandoned"
+endif
+
+# DEPLOY A VERSION
+
+# `make deploy VERSION=v` publishes version v of the website:
+
+ifdef VERSION
+deploy:
+	@mike deploy $(VERSION) --push
+	@echo "Deployed generated website as version $(VERSION)"
+endif
+
+# It is recommended to omit patch numbers in semantic versioning.
+# Version identifiers that "look like" versions (e.g. 1.2.3, 1.0b1, v1.0)
+# are treated as ordinary versions, whereas other identifiers, like devel,
+# are treated as development versions, and placed above ordinary versions.
+
+# SET A DEPLOYED VERSION AS DEFAULT
+
+# `make default VERSION=...` sets a previously deployed version as the default,
+# *without* deploying the current generated website. It also creates or updates
+# the alias `default` to point to the default version.
+
+.PHONY: default
+default:
+ifdef VERSION
+	@mike alias $(VERSION) default --update-aliases
+	@mike set-default $(VERSION) --allow-empty --push
+	@echo "The default version is now $(VERSION)"
+else
+	@echo "Error: missing VERSION=..."
+endif
+
+# DELETE A DEPLOYED VERSION
+
+# `make delete VERSION=...` removes a deployed version of a website.
+
+# If VERSION is set as the default version, this can break existing links to
+# the website! To avoid that, first use `make default VERSION=...` to change
+# the default to a different version.
+
+.PHONY: delete
+delete:
+ifdef VERSION
+	@mike delete $(VERSION) --allow-empty --push
+	@echo "Deleted deployed version $(VERSION)"
+else
+	@echo "Error: missing VERSION=..."
+endif
+
+# LIST VERSIONS
+
+# `make list-versions` lists the current deployed versions.
+
+.PHONY: list-versions
+list-versions:
+	@mike list
+
+##############################################################################
+# DEBUG
+
+# `make debug` shows the values of some of the variables assigned in this file:
 
 .PHONY: debug
 export DEBUG
@@ -528,32 +611,34 @@ debug:
 
 define DEBUG
 
+PROJECT: $(PROJECT)
 DIR:     $(DIR)
 ROOT:    $(ROOT)
-PROJECT: $(PROJECT)
+HTML:    $(HTML)
+MD:      $(MD)
+INDEX:   $(INDEX)
+SITE:    $(SITE)
+TEMP:    $(TEMP)
+VERSION: $(VERSION)
 
 INCLUDE-PATHS: $(strip $(INCLUDE-PATHS))
 ROOT-PATHS:    $(strip $(ROOT-PATHS))
 ROOT-FILES:    $(strip $(ROOT-FILES))
 
-HTML: $(HTML)
-MD:   $(MD)
-SITE: $(SITE)
-TEMP: $(TEMP)
-
 endef
 
-# agda-stdlib: make -f Makefile debug    
+# make -f Makefile debug        
 
+# PROJECT: .../agda-stdlib
 # DIR:     .,doc,src
 # ROOT:    index
-# PROJECT: /Users/pdm/Projects/Agda/agda-stdlib
+# HTML:    docs
+# MD:      docs
+# INDEX:   index_
+# SITE:    site
+# TEMP:    temp
+# VERSION: 
 
 # INCLUDE-PATHS: . doc src
 # ROOT-PATHS:    index
 # ROOT-FILES:    ./index.agda
-
-# HTML: docs
-# MD:   docs
-# SITE: site
-# TEMP: temp
