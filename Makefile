@@ -498,9 +498,8 @@ endif
 .PHONY: clean-md
 clean-md:
 ifeq ($(MD),docs)
-	@rm -rf $(shell \
-		    find docs/*/* -name index.md | \
-		    sd '(docs/[^/]*)/.*index\.md' '$$1' | sort -u)
+	@find docs/*/* -empty -type d -delete -or \
+	    -name index.md ! -path docs/Library/* ! -path docs/Test/* -delete
 else
 	@rm -rf $(MD)
 endif
