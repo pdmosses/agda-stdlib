@@ -1,5 +1,5 @@
 nav:
-  - About: index.md
+  - index.md
   - README/
   - Library:
     - index/index.md

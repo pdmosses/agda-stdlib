@@ -19,7 +19,7 @@ _build
 /docs/*.css
 /docs/*.html
 /docs/*.js
-/docs/**/index.md
+/docs/*/**/index.md
 dist
 dist-newstyle
 Everything.agda
