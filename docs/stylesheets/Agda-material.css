@@ -10,6 +10,7 @@
 pre.Agda {
   color: var(--md-text-fg-color);
   background-color: var(--md-text-bg-color);
+  /* font-size: 1em; */
   /* font-family: var(--md-text-font-family); */
 }
 
@@ -24,6 +25,12 @@ code.Agda {
 .Agda a.Module.Definition {
   text-decoration: underline;
   font-weight: bold;
+}
+
+/* KaTeX https://katex.org/docs/font */
+
+.katex {
+  font-size: 1em; /* default is 1.21em */
 }
 
 /* Search */
