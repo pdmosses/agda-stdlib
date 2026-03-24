@@ -6,7 +6,7 @@ The repository contains the following additional directory and files:
     - `docs/javascripts`: directory for added Javascript files
     - `docs/stylesheets`: directory for added CSS files
     - `docs/.nav.yml`: configuration file for navigation panels
-    - `docs/nav.md`: the home page of the generated website
+    - `docs/index.md`: the home page of the generated website
     - `docs/installation-guide.md`: this page
 - `Makefile`: automation of website generation
 - `mkdocs.yml`: configuration file for the generated website
@@ -16,7 +16,7 @@ The repository does not contain any generated files.
 The `Makefile` generates files in the docs directory:
 
 - `docs/*.html`: HTML files
-- `docs/**/index.md`: Markdown files
+- `docs/*/**/index.md`: Markdown files
 
 Moreover, building and deploying the generated website creates the directories
 `site` and `temp`.
@@ -46,7 +46,7 @@ have been added to `.gitignore`:
 /docs/*.css
 /docs/*.html
 /docs/*.js
-/docs/**/index.md
+/docs/*/**/index.md
 /index.agda
 /index.sh
 /site/
@@ -54,7 +54,6 @@ have been added to `.gitignore`:
 
 ## Additional software dependencies
 
-- [Agda] (2.8.0)
 - [Awesome-nav] (3.3.0)
 - [GNU Make] (3.81)
 - [Material for MkDocs] (9.7.6)
@@ -64,6 +63,11 @@ have been added to `.gitignore`:
 - [Python 3] (3.14.0)
 - [sd] (1.0.0)
 
+## Platform dependencies
+
+The website generation has been developed and tested on MacBook laptops
+with Apple M1 and M3 chips running macOS Tahoe (26.3) with CLI Tools.
+
 [Awesome-nav]: https://lukasgeiter.github.io/mkdocs-awesome-nav/
 [GNU Make]: https://www.gnu.org/software/make/manual/make.html
 [Material for MkDocs]: https://squidfunk.github.io/mkdocs-material/getting-started/
@@ -72,17 +76,3 @@ have been added to `.gitignore`:
 [pip]: https://pip.pypa.io/stable/
 [Python 3]: https://www.python.org/downloads/
 [sd]: https://github.com/chmln/sd/
-
-## Platform dependencies
-
-The website generation has been developed and tested on MacBook laptops
-with Apple M1 and M3 chips running macOS Tahoe (26.3) with CLI Tools.
-
-[GNU Make]: https://www.gnu.org/software/make/manual/make.html
-[sd]: https://github.com/chmln/sd/
-[Python 3]: https://www.python.org/downloads/
-[Pip]: https://pypi.org/project/pip/
-[MkDocs]: https://www.mkdocs.org/getting-started/
-[Material for MkDocs]: https://squidfunk.github.io/mkdocs-material/getting-started/
-[Awesome-nav]: https://lukasgeiter.github.io/mkdocs-awesome-nav/
-[mike]: https://github.com/jimporter/mike/

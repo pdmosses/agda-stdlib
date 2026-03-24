@@ -1,11 +1,5 @@
-[![Ubuntu build](https://github.com/agda/agda-stdlib/actions/workflows/ci-ubuntu.yml/badge.svg)](https://github.com/agda/agda-stdlib/actions/workflows/ci-ubuntu.yml)
-
-[![Ubuntu build](https://github.com/agda/agda-stdlib/actions/workflows/ci-ubuntu.yml/badge.svg?branch=experimental)](https://github.com/agda/agda-stdlib/actions/workflows/ci-ubuntu.yml)
-
-[![DOI](https://joss.theoj.org/papers/10.21105/joss.09241/status.svg)](https://doi.org/10.21105/joss.09241)
-
-The Agda standard library
-=========================
+A fork of the Agda standard library
+===================================
 
 The standard library aims to contain all the tools needed to write both
 programs and proofs easily. While we always try and write efficient
@@ -33,10 +27,10 @@ in glorious clickable HTML.
 ## Alternative website generation (experimental)
 
 > [!TIP]
-> You can generate a website with hierarchical navigation menus and a toggle
-> for switching between light and dark mode.
+> You can generate a website with *hierarchical navigation menus* and
+> a toggle for switching between *light and dark mode*!
 
-See https://pdmosses.github.io/agda-stdlib/2.4-dev/nav/ for a prototype.
+See https://pdmosses.github.io/agda-stdlib/ for a prototype.
 
 -   You can generate the website by the following commands:
     
@@ -59,32 +53,33 @@ See https://pdmosses.github.io/agda-stdlib/2.4-dev/nav/ for a prototype.
     ```
 
 -   You can deploy the generated website to GitHub Pages as a *versioned* site
-    with initial version `v` by:
+    with *initial* version `v` by:
     
     ```sh
-    make -f Makefile delete-all-deployed
+    make -f Makefile start-versioning
     make -f Makefile deploy VERSION=v
     ```
 
     A version selector is then shown at the top of each page. Version
     identifiers that "look like" versions (e.g. `1.2.3`, `1.0b1`, `v1.0`)
-    are treated as ordinary versions, whereas other identifiers, like `devel`,
+    are treated as ordinary versions, whereas other identifiers, like `dev`,
     are treated as development versions, and placed above ordinary versions.
 
-    You can make an already-deployed version the *default* version by:
+    You can make an *already-deployed* version `v` the *default version* and
+    set the *default alias* to point to it by:
 
     ```sh
     make -f Makefile default VERSION=v
     ```
+    
+    Then the website home page redirects to version `v`, and URLs of the form
+    `.../default/...` redirect to `.../v/...`.
 
     Deploying a new version does *not* change the default.
 
-    When deploying the generated website as a version, other versions of the
-    website remain untouched. If a version is already deployed, redeployment
-    updates its contents.
-
-    Note: Deploying a new version does *not* involve updating the content of
-    generated website!
+    When deploying the generated website as a *new* version, other deployed
+    versions of the website remain untouched. If you deploy it with an
+    *existing* version identifier, that version is thereby updated.
 
     To remove a deployed version `v` *other than the current default* run:
 
@@ -92,15 +87,14 @@ See https://pdmosses.github.io/agda-stdlib/2.4-dev/nav/ for a prototype.
     make -f Makefile delete VERSION=v
     ```
  
-    Finally, you can browse all the currently deployed versions of your website
-    locally by:
+    Finally, you can list all the currently deployed versions of your website:
     
     ```sh
-    make -f Makefile serve-all
+    make -f Makefile list-versions
     ```
 
 See the [additional installation instructions](https://github.com/pdmosses/agda-stdlib/blob/gen-website/docs/installation-guide.md)
-for the software dependencies of the website generation.
+for the software dependencies of the experimental website generation.
 
 ## Installation instructions
 
