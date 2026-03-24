@@ -1,0 +1,16 @@
+nav:
+  - index.md
+  - README/
+  - Library:
+    - index/index.md
+    - Everything/index.md
+    - EverythingSafe/index.md
+    - '*'
+
+ignore:
+  - installation-guide.md
+
+preserve_directory_names: true
+
+sort:
+  sections: mixed
