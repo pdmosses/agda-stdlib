@@ -34,7 +34,7 @@ library code and generating a website:
 To do that, run the following commands:
 
 ```sh
-cp .github/tooling/index.* .
+cp .github/tooling/* .
 cabal run GenerateEverything
 ./index.sh
 ```
