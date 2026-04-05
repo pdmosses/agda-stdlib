@@ -1,5 +1,5 @@
 ---
-title: agda-stdlib
+title: This website
 ---
 
 An Agda standard library website
@@ -34,7 +34,7 @@ An Agda standard library website
       - The **[README](README/index.md)** section contains all the modules from
         the `doc/README` directory.
 
-      - The **[Library](index/index.md)** section contains the built-in modules, 
+      - The **[Library](index.md)** section contains the built-in modules, 
         and standard library modules that are (transitively) imported by the
         `index` and `README` modules.
 
@@ -164,13 +164,13 @@ changes to the language.
 #### The `--safe` flag
 
 Most of the library can be type-checked using the `--safe` flag. Please consult
-[GenerateEverything.hs](https://github.com/agda/agda-stdlib/blob/master/GenerateEverything.hs#L32-L82)
+[GenerateEverything.hs](https://github.com/agda/agda-stdlib/blob/master/GenerateEverything.hs)
 for a full list of modules that use unsafe features.
 
 #### The `--cubical-compatible` flag
 
 Most of the library can be type-checked using the `--cubical-compatible` flag, which since Agda v2.6.3 supersedes the former `--without-K` flag. Please consult
-[GenerateEverything.hs](https://github.com/agda/agda-stdlib/blob/master/GenerateEverything.hs#L91-L111)
+[GenerateEverything.hs](https://github.com/agda/agda-stdlib/blob/master/GenerateEverything.hs)
 for a full list of modules that use axiom K, requiring the `--with-K` flag.
 
 ## Contributing to the library
