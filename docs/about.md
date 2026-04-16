@@ -53,8 +53,9 @@ An Agda standard library website
     ```
 
     The `check` command takes about 15 seconds (assuming that the library has
-    previously been loaded – otherwise about 4 minutes). The `web` and `serve`
-    commmands both take about 75 seconds, and `deploy` takes about 100 seconds.
+    previously been loaded – otherwise about 4 minutes). The `web` command
+    takes about 90 seconds, `serve` about 50 seconds, and `deploy` takes about
+    100 seconds.
 
     The [`linkcheck`](https://github.com/filiph/linkcheck/) application reports
     that recent versions of the website have more than 2000 pages (including

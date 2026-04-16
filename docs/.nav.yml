@@ -5,8 +5,8 @@ nav:
   - README/
   - Library:
     - index.md
-    - Everything/index.md
-    - EverythingSafe/index.md
+    - Everything.md
+    - EverythingSafe.md
     - '*'
 
 preserve_directory_names: true

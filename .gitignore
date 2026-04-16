@@ -19,7 +19,9 @@ _build
 /docs/*.css
 /docs/*.html
 /docs/*.js
-/docs/*/**/index.md
+/docs/**/*.md
+!/docs/about.md
+!/docs/installation-guide.md
 dist
 dist-newstyle
 Everything.agda
@@ -32,6 +34,7 @@ Haskell
 html
 /index.agda
 /index.sh
+/landing*
 log
 logs/
 MAlonzo
