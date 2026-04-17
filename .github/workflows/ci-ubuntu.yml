@@ -183,7 +183,7 @@ jobs:
       # We then generate the docs in the AGDA_HTML_DIR subdirectory
       - name: Generate HTML
         run: |
-          git clone --depth 1 --single-branch --branch gh-pages https://github.com/agda/agda-stdlib html
+          git clone --depth 1 --single-branch --branch gh-pages https://github.com/pdmosses/agda-stdlib html
           rm -f '${{ env.AGDA_HTML_DIR }}'/*.html
           rm -f '${{ env.AGDA_HTML_DIR }}'/*.css
           ${{ env.AGDA }} --html --html-dir ${{ env.AGDA_HTML_DIR }} index.agda
