@@ -600,7 +600,7 @@ clean-all: clean-html clean-md
 .PHONY: clean-html
 clean-html:
 ifeq ($(HTML),docs)
-	@rm -f docs/*.{html,css,js}
+	@rm -rf docs/*.{html,css,js}
 else
 	@rm -rf $(HTML)
 endif
