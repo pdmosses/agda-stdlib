@@ -11,10 +11,10 @@ extra:
     provider: mike
 
 plugins:
-- search
-- awesome-nav
-- mike:
-    deploy_prefix: 'nav'
+  - search
+  - awesome-nav
+  - mike:
+      deploy_prefix: 'nav'
 
 use_directory_urls: true
 
