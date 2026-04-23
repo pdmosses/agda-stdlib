@@ -67,17 +67,17 @@ An Agda standard library website
     deployed versions, implemented with `mike`:
     
       - Assuming that the website is not already deployed *unversioned*,
-        the command to deploy (or update) version `v` on GitHub Pages is:
+        the command to deploy (or update) version `V` on GitHub Pages is:
 
         ```sh
-        make -f Makefile deploy VERSION=v
+        make -f Makefile deploy VERSION=V
         ```
 
-      - To set the `default` alias to version `v` and redirect the website homepage
+      - To set the `default` alias to version `V` and redirect the website homepage
         to the same version, run:
 
         ```sh
-        make -f Makefile default VERSION=v
+        make -f Makefile default VERSION=V
         ```
 
       - The following command displays a list of all currently deployed versions:
@@ -86,10 +86,10 @@ An Agda standard library website
         make -f Makefile list-versions
         ```
 
-      - To remove deployed version `v` from the website, run:
+      - To remove deployed version `V` from the website, run:
 
         ```sh
-        make -f Makefile delete VERSION=v
+        make -f Makefile delete VERSION=V
         ```
 
 [^1]:
