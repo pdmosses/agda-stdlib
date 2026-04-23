@@ -30,7 +30,7 @@ in glorious clickable HTML.
 > You can generate a website with *hierarchical navigation menus* and
 > a toggle for switching between *light and dark mode*!
 
-See https://pdmosses.github.io/agda-stdlib/ for a prototype.
+See https://pdmosses.github.io/agda-stdlib/nav/ for a prototype.
 
 -   You can generate the website by the following commands:
     
