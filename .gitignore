@@ -16,6 +16,7 @@
 _build
 .DS_Store
 .vscode/*
+/defunct-readme.sh
 dist
 dist-newstyle
 Everything.agda
@@ -26,6 +27,11 @@ failures
 GenerateEverything
 Haskell
 html
+/index.agda
+/index.sh
+/landing-bottom.html
+/landing-top.html
+/landing.sh
 log
 logs/
 MAlonzo
