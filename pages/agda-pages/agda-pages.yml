@@ -1,0 +1,139 @@
+# https://github.com/pdmosses/agda2pages/mkdocs.inherit.yml
+#
+# This file provides some general configuration settings for websites using the
+# Material for MkDocs theme (https://squidfunk.github.io/mkdocs-material/).
+
+# To inherit these settings in mkdocs.yml, prepend to that file:
+#
+# INHERIT: relative-path-to-this-file/mkdocs.inherit.yml
+#
+# You can then extend or override the settings for individual keys – see
+# https://www.mkdocs.org/user-guide/configuration/#configuration-inheritance
+
+# Set a site_name in mkdocs.yml, e.g.:
+#
+# site_name: Example-Site
+#
+# Set also the following optional keys:
+#
+# site_url:  https://example.github.io/example-site/
+# repo_name: example-site
+# repo_url:  https://github.com/example-site
+
+# To deploy a versioned website:
+#
+# - Install `mike` from https://github.com/jimporter/mike/
+# - Append the following setting to mkdocs.yml:
+#
+# extra:
+#   version:
+#     provider: mike
+#
+# - Run `make start-versioning` before deploying any versions.
+#
+# When serving a versioned website locally, disregard the 404 reports.
+
+theme:
+
+  name: material
+
+  # Use local system fonts (instead of Google fonts such as Roboto):
+
+  font: false
+
+  # Support automatic / light / dark modes:
+  palette:
+
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/lightbulb-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to system preference
+
+  features: # Default list, copied from mkdocs.features.yml
+
+    - content.code.copy
+    # - navigation.expand     # unsuitable for large sites
+    # - navigation.footer     # unsuitable for large sites
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.path
+    # - navigation.prune    # suppresses effect of navigation.expand
+    # - navigation.sections # incompatible with navigation.expand
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    # - toc.integrate       # incompatible with navigation.indexes
+
+  custom_dir: overrides
+
+# Agda Pages requires the use of directory URLs:
+use_directory_urls: true
+
+extra_css:
+# KaTeX:
+  - https://unpkg.com/katex@0/dist/katex.min.css
+# Agda:
+  - stylesheets/agda-pages.css
+  - stylesheets/agda-pages-light.css
+  - stylesheets/agda-pages-dark.css
+  - stylesheets/custom.css
+
+extra_javascript:
+# KaTeX:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+# Agda:
+  - javascripts/highlight-hover.js
+  - javascripts/custom.js
+
+markdown_extensions:
+  admonition: {}
+  attr_list: {}
+  def_list: {}
+  footnotes: {}
+  md_in_html: {}
+  pymdownx.arithmatex:
+    generic: true
+  pymdownx.caret: {}
+  pymdownx.critic:
+    mode: view
+  pymdownx.details: {}
+  pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  pymdownx.keys: {}
+  pymdownx.mark: {}
+  pymdownx.superfences: {}
+  pymdownx.tasklist:
+    custom_checkbox: true
+  tables: {}
+  pymdownx.tilde: {}
+
+# The inheriting mkdocs.yml can extend or override the values of the above keys,
+# but removing keys requires overriding the entire markdown_extensions list.
+
+plugins:
+  awesome-nav: {}
+  search: {}
