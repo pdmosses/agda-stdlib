@@ -62095,8 +62095,18 @@
 <p>The <strong><a href="../README/">README</a></strong> section was generated from plain Agda files in the
 <a href="https://github.com/pdmosses/agda-stdlib/tree/master/doc">doc directory</a>.</p>
 <p>The <strong><a href="../">Library</a></strong> section was generated from plain Agda files created by
-<a href="https://github.com/pdmosses/agda-stdlib/blob/master/GenerateEverything.hs">GenerateEverything.hs</a>. The Library home page is also the website home page.</p>
-<p>When deployed, the website displays a <strong>version selector</strong> on all pages.</p>
+<a href="https://github.com/pdmosses/agda-stdlib/blob/master/GenerateEverything.hs">GenerateEverything.hs</a>, which import modules from the <a href="https://github.com/pdmosses/agda-stdlib/tree/master/src">src directory</a>.
+The Library home page is also the website home page.</p>
+<p>When deployed, the website displays a <strong>version selector</strong> on all pages.
+Currently, only the <code>master</code> version has been deployed; it was generated from
+a <a href="https://github.com/pdmosses/agda-stdlib/">fork</a> of the <a href="https://github.com/agda/agda-stdlib/">repository</a> after the release of version 2.4.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Agda code in the <code>master</code> version of the standard library may have
+been updated since the <code>master</code> version of the present website was
+generated. For the definitive listings of the <code>master</code> branch, see the
+official <a href="https://agda.github.io/agda-stdlib/master/">standard library website</a>.</p>
+</div>
 <p>See the <strong><a href="https://pdmosses.github.io/agda-pages/About/">Agda-Pages About</a></strong> page for an overview of the features
 of the generated website, and for links to further examples.</p>
 <h2 id="generation">Generation</h2>
@@ -62104,16 +62114,16 @@ of the generated website, and for links to further examples.</p>
 Agda code in any GitHub repository.</p>
 <p>See the <strong><a href="https://github.com/pdmosses/agda-pages/blob/main/README.md">Agda-Pages README</a></strong> for how to install Agda-Pages,
 and for a list of its main software dependencies.</p>
-<p>Running the following shell commands in the <a href="https://github.com/pdmosses/agda-stdlib/tree/master/pages">pages directory</a> generated this
-website from the <a href="https://github.com/pdmosses/agda-stdlib/">repository</a>:</p>
+<p>Running the following shell commands in the <a href="https://github.com/pdmosses/agda-stdlib/tree/add-pages/pages">pages directory</a> generated this
+website from the <a href="https://github.com/pdmosses/agda-stdlib/">fork</a>:</p>
 <div class="highlight"><pre><span></span><code>make<span class="w"> </span>index
 make<span class="w"> </span>check
 make<span class="w"> </span>web
 make<span class="w"> </span>serve
 </code></pre></div>
-<p>The generated website was deployed as version <code>...</code>  at
-<code>https://pdmosses.github.io/agda-stdlib/pages/.../</code> by:</p>
-<div class="highlight"><pre><span></span><code>make<span class="w"> </span>deploy<span class="w"> </span><span class="nv">VERSION</span><span class="o">=</span>...
+<p>The generated website was deployed as version <code>master</code>  at
+<a href="https://pdmosses.github.io/agda-stdlib/pages/master/">https://pdmosses.github.io/agda-stdlib/pages/master/</a> by:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>deploy<span class="w"> </span><span class="nv">VERSION</span><span class="o">=</span>master
 </code></pre></div>
 
 
