@@ -1,4 +1,5 @@
 SOURCES := ../. ../doc ../src
+MODULES := index
 PROTECT := docs/About.md
 SERVER  := 8020
 
