@@ -1,9 +1,9 @@
 INHERIT: agda-pages/agda-pages.yml
 
-site_name: agda-stdlib-pages
+site_name: Agda Standard Library Pages
 site_url:  https://pdmosses.github.io/agda-stdlib/pages/
-repo_name: pdmosses/agda-stdlib
-repo_url:  https://github.com/pdmosses/agda-stdlib
+repo_name: pdmosses, add-pages branch
+repo_url:  https://github.com/pdmosses/agda-stdlib/tree/add-pages
 
 extra:
   version:
