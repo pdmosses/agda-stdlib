@@ -503,6 +503,11 @@ Additions to existing modules
   lookup-tail : (xs : Vec A (suc n)) → lookup xs (suc i) ≡ lookup (tail xs) i
   ```
 
+* In `Data.Vec.Relation.Unary.Unique.Setoid`:
+  ```
+  unique? : Decidable _≈_ → Decidable Unique
+  ```
+
 * In `Function.Bundles.Bijection`:
   ```agda
   from             : B → A
@@ -604,6 +609,21 @@ Additions to existing modules
   inverseˡ         : Inverseˡ _≈₁_ _≈₂_ to from
   strictlyInverseˡ : StrictlyInverseˡ _≈₂_ to from
   from-injective   : Injective _≈₂_ _≈₁_ from
+  ```
+
+* In `Relation.Binary.Construct.Add.Extrema.NonStrict`:
+  ```agda
+  ≤±-refl : Reflexive _≤_ → Reflexive _≤±_
+  ```
+
+* In `Relation.Binary.Construct.Add.Infimum.NonStrict`:
+  ```agda
+  ≤₋-refl : Reflexive _≤_ → Reflexive _≤₋_
+  ```
+
+* In `Relation.Binary.Construct.Add.Supremum.NonStrict`:
+  ```agda
+  ≤⁺-refl : Reflexive _≤_ → Reflexive _≤⁺_
   ```
 
 * In `Relation.Binary.Definitions`:
