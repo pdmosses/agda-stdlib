@@ -75,9 +75,8 @@ make serve
 While serving the website, running the [linkcheck] application reports:
 
 ```sh
-agda-stdlib: .../linkcheck/linkcheck -e :8020 --skip-file ../agda-pages/skip.txt
-
-Perfect. Checked 1935439 links, 1209 destination URLs (1 ignored).
+agda-stdlib: .../linkcheck/linkcheck -e :8020 --skip-file pages/agda-pages/skip.txt       
+Perfect. Checked 1935504 links, 1215 destination URLs (1 ignored).
 ```
 
 The generated website was initially deployed at <https://pdmosses.github.io/agda-stdlib/pages/> by:
@@ -97,9 +96,9 @@ make deploy VERSION=master
 [Library]:               index.md
 [README]:                README/index.md
 
-[Agda-Pages]:            https://pdmosses.github.io/agda-pages/
-[Agda-Pages About]:      https://pdmosses.github.io/agda-pages/About/
-[Agda-Pages User Guide]: https://pdmosses.github.io/agda-pages/User-Guide/
+[Agda-Pages]:            https://pdmosses.github.io/agda-pages/default/
+[Agda-Pages About]:      https://pdmosses.github.io/agda-pages/default/About/
+[Agda-Pages User Guide]: https://pdmosses.github.io/agda-pages/default/User-Guide/
 [Agda-Pages repository]: https://github.com/pdmosses/agda-pages/
 [Agda-Pages README]:     https://github.com/pdmosses/agda-pages/blob/main/README.md
 [linkcheck]:             https://github.com/filiph/linkcheck/
