@@ -23,7 +23,7 @@ include agda-pages/agda-pages.mk
 #  - index.agda
 
 .PHONY: index
-index:
+index: clean-index
 	@cd ..; \
 	cp .github/tooling/* .; \
 	cabal run GenerateEverything; \
