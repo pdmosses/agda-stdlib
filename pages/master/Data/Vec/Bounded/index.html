@@ -81,7 +81,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="primary">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -61966,34 +61966,9 @@
           
             <div class="md-content" data-md-component="content">
               
-                <!--
-  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+                
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
 
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-<!-- Copyright notice copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/path.html
-     Code copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/path.html
-     Edited for use in agda2pages by @pdmosses
- -->
 
 
 
@@ -62091,7 +62066,7 @@
 <a id="374" class="Keyword">import</a> <a id="381" href="../../../Data/Vec/" class="Module">Data.Vec</a> <a id="390" class="Symbol">as</a> <a id="393" class="Module">Vec</a> <a id="397" class="Keyword">using</a> <a id="403" class="Symbol">(</a><a id="404" href="../../../Data/Vec/#1187" class="Function">filter</a><a id="410" class="Symbol">;</a> <a id="412" href="../../../Data/Vec/#1340" class="Function">takeWhile</a><a id="421" class="Symbol">;</a> <a id="423" href="../../../Data/Vec/#1491" class="Function">dropWhile</a><a id="432" class="Symbol">)</a>
 <a id="434" class="Keyword">open</a> <a id="439" class="Keyword">import</a> <a id="446" href="../../../Function/Base/" class="Module">Function.Base</a> <a id="460" class="Keyword">using</a> <a id="466" class="Symbol">(</a><a id="467" href="../../../Function/Base/#695" class="Function">id</a><a id="469" class="Symbol">)</a>
 <a id="471" class="Keyword">open</a> <a id="476" class="Keyword">import</a> <a id="483" href="../../../Relation/Binary/Core/" class="Module">Relation.Binary.Core</a> <a id="504" class="Keyword">using</a> <a id="510" class="Symbol">(</a><a id="511" href="../../../Relation/Binary/Core/#1568" class="Function Operator">_Preserves_⟶_</a><a id="524" class="Symbol">)</a>
-<a id="526" class="Keyword">open</a> <a id="531" class="Keyword">import</a> <a id="538" href="../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="553" class="Keyword">using</a> <a id="559" class="Symbol">(</a><a id="560" href="../../../Relation/Unary/#1214" class="Function">Pred</a><a id="564" class="Symbol">;</a> <a id="566" href="../../../Relation/Unary/#4579" class="Function">Decidable</a><a id="575" class="Symbol">)</a>
+<a id="526" class="Keyword">open</a> <a id="531" class="Keyword">import</a> <a id="538" href="../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="553" class="Keyword">using</a> <a id="559" class="Symbol">(</a><a id="560" href="../../../Relation/Unary/#1214" class="Function">Pred</a><a id="564" class="Symbol">;</a> <a id="566" href="../../../Relation/Unary/#4536" class="Function">Decidable</a><a id="575" class="Symbol">)</a>
 
 <a id="578" class="Keyword">private</a>
   <a id="588" class="Keyword">variable</a>
@@ -62118,7 +62093,7 @@
 <a id="1161" class="Comment">------------------------------------------------------------------------</a>
 <a id="1234" class="Comment">-- Additional operations</a>
 
-<a id="1260" class="Keyword">module</a> <a id="1267" href="../../../Data/Vec/Bounded/#1267" class="Module">_</a> <a id="1269" class="Symbol">{</a><a id="1270" href="../../../Data/Vec/Bounded/#1270" class="Bound">P</a> <a id="1272" class="Symbol">:</a> <a id="1274" href="../../../Relation/Unary/#1214" class="Function">Pred</a> <a id="1279" href="../../../Data/Vec/Bounded/#617" class="Generalizable">A</a> <a id="1281" href="../../../Data/Vec/Bounded/#603" class="Generalizable">p</a><a id="1282" class="Symbol">}</a> <a id="1284" class="Symbol">(</a><a id="1285" href="../../../Data/Vec/Bounded/#1285" class="Bound">P?</a> <a id="1288" class="Symbol">:</a> <a id="1290" href="../../../Relation/Unary/#4579" class="Function">Decidable</a> <a id="1300" href="../../../Data/Vec/Bounded/#1270" class="Bound">P</a><a id="1301" class="Symbol">)</a> <a id="1303" class="Keyword">where</a>
+<a id="1260" class="Keyword">module</a> <a id="1267" href="../../../Data/Vec/Bounded/#1267" class="Module">_</a> <a id="1269" class="Symbol">{</a><a id="1270" href="../../../Data/Vec/Bounded/#1270" class="Bound">P</a> <a id="1272" class="Symbol">:</a> <a id="1274" href="../../../Relation/Unary/#1214" class="Function">Pred</a> <a id="1279" href="../../../Data/Vec/Bounded/#617" class="Generalizable">A</a> <a id="1281" href="../../../Data/Vec/Bounded/#603" class="Generalizable">p</a><a id="1282" class="Symbol">}</a> <a id="1284" class="Symbol">(</a><a id="1285" href="../../../Data/Vec/Bounded/#1285" class="Bound">P?</a> <a id="1288" class="Symbol">:</a> <a id="1290" href="../../../Relation/Unary/#4536" class="Function">Decidable</a> <a id="1300" href="../../../Data/Vec/Bounded/#1270" class="Bound">P</a><a id="1301" class="Symbol">)</a> <a id="1303" class="Keyword">where</a>
 
   <a id="1312" href="../../../Data/Vec/Bounded/#1312" class="Function">filter</a> <a id="1319" class="Symbol">:</a> <a id="1321" class="Symbol">∀</a> <a id="1323" class="Symbol">{</a><a id="1324" href="../../../Data/Vec/Bounded/#1324" class="Bound">n</a><a id="1325" class="Symbol">}</a> <a id="1327" class="Symbol">→</a> <a id="1329" href="../../../Data/Vec/Bounded/Base/#1379" class="Record">Vec≤</a> <a id="1334" href="../../../Data/Vec/Bounded/#1279" class="Bound">A</a> <a id="1336" href="../../../Data/Vec/Bounded/#1324" class="Bound">n</a> <a id="1338" class="Symbol">→</a> <a id="1340" href="../../../Data/Vec/Bounded/Base/#1379" class="Record">Vec≤</a> <a id="1345" href="../../../Data/Vec/Bounded/#1279" class="Bound">A</a> <a id="1347" href="../../../Data/Vec/Bounded/#1324" class="Bound">n</a>
   <a id="1351" href="../../../Data/Vec/Bounded/#1312" class="Function">filter</a> <a id="1358" class="Symbol">=</a> <a id="1360" href="../../../Data/Vec/Bounded/#1066" class="Function">lift′</a> <a id="1366" class="Symbol">(</a><a id="1367" href="../../../Data/Vec/#1187" class="Function">Vec.filter</a> <a id="1378" href="../../../Data/Vec/Bounded/#1285" class="Bound">P?</a><a id="1380" class="Symbol">)</a>

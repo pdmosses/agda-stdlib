@@ -81,7 +81,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="primary">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -61978,34 +61978,9 @@
           
             <div class="md-content" data-md-component="content">
               
-                <!--
-  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+                
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
 
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-<!-- Copyright notice copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/path.html
-     Code copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/path.html
-     Edited for use in agda2pages by @pdmosses
- -->
 
 
 
@@ -62149,7 +62124,7 @@
 <a id="717" class="Keyword">open</a> <a id="722" class="Keyword">import</a> <a id="729" href="../../../../../../Data/Product/" class="Module">Data.Product</a> <a id="742" class="Keyword">using</a> <a id="748" class="Symbol">(</a><a id="749" href="../../../../../../Agda/Builtin/Sigma/#235" class="InductiveConstructor Operator">_,_</a><a id="752" class="Symbol">)</a>
 <a id="754" class="Keyword">open</a> <a id="759" class="Keyword">import</a> <a id="766" href="../../../../../../Function/Bundles/" class="Module">Function.Bundles</a> <a id="783" class="Keyword">using</a> <a id="789" class="Symbol">(</a><a id="790" href="../../../../../../Function/Bundles/#5361" class="Record">Equivalence</a><a id="801" class="Symbol">)</a>
 <a id="803" class="Keyword">open</a> <a id="808" class="Keyword">import</a> <a id="815" href="../../../../../../Level/" class="Module">Level</a> <a id="821" class="Keyword">using</a> <a id="827" class="Symbol">(</a><a id="828" href="../../../../../../Agda/Primitive/#742" class="Postulate">Level</a><a id="833" class="Symbol">)</a>
-<a id="835" class="Keyword">open</a> <a id="840" class="Keyword">import</a> <a id="847" href="../../../../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="862" class="Keyword">using</a> <a id="868" class="Symbol">(</a><a id="869" href="../../../../../../Relation/Unary/#4005" class="Function">Irrelevant</a><a id="879" class="Symbol">)</a>
+<a id="835" class="Keyword">open</a> <a id="840" class="Keyword">import</a> <a id="847" href="../../../../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="862" class="Keyword">using</a> <a id="868" class="Symbol">(</a><a id="869" href="../../../../../../Relation/Unary/#3962" class="Function">Irrelevant</a><a id="879" class="Symbol">)</a>
 <a id="881" class="Keyword">open</a> <a id="886" class="Keyword">import</a> <a id="893" href="../../../../../../Relation/Binary/PropositionalEquality/Properties/" class="Module">Relation.Binary.PropositionalEquality.Properties</a> <a id="942" class="Symbol">as</a> <a id="945" class="Module">≡</a>
 <a id="947" class="Keyword">open</a> <a id="952" class="Keyword">import</a> <a id="959" href="../../../../../../Relation/Binary/PropositionalEquality/WithK/" class="Module">Relation.Binary.PropositionalEquality.WithK</a> <a id="1003" class="Keyword">using</a> <a id="1009" class="Symbol">(</a><a id="1010" href="../../../../../../Relation/Binary/PropositionalEquality/WithK/#1041" class="Function">≡-irrelevant</a><a id="1022" class="Symbol">)</a>
 
@@ -62162,7 +62137,7 @@
 <a id="1092" class="Comment">------------------------------------------------------------------------</a>
 <a id="1165" class="Comment">-- Irrelevance</a>
 
-<a id="unique⇒irrelevant"></a><a id="1181" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1181" class="Function">unique⇒irrelevant</a> <a id="1199" class="Symbol">:</a> <a id="1201" href="../../../../../../Data/List/Relation/Unary/Unique/Setoid/#608" class="Datatype">Unique</a> <a id="1208" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1076" class="Generalizable">xs</a> <a id="1211" class="Symbol">→</a> <a id="1213" href="../../../../../../Relation/Unary/#4005" class="Function">Irrelevant</a> <a id="1224" class="Symbol">(</a><a id="1225" href="../../../../../../Data/List/Membership/Setoid/#916" class="Function Operator">_∈</a> <a id="1228" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1076" class="Generalizable">xs</a><a id="1230" class="Symbol">)</a>
+<a id="unique⇒irrelevant"></a><a id="1181" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1181" class="Function">unique⇒irrelevant</a> <a id="1199" class="Symbol">:</a> <a id="1201" href="../../../../../../Data/List/Relation/Unary/Unique/Setoid/#608" class="Datatype">Unique</a> <a id="1208" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1076" class="Generalizable">xs</a> <a id="1211" class="Symbol">→</a> <a id="1213" href="../../../../../../Relation/Unary/#3962" class="Function">Irrelevant</a> <a id="1224" class="Symbol">(</a><a id="1225" href="../../../../../../Data/List/Membership/Setoid/#916" class="Function Operator">_∈</a> <a id="1228" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1076" class="Generalizable">xs</a><a id="1230" class="Symbol">)</a>
 <a id="1232" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1181" class="Function">unique⇒irrelevant</a> <a id="1250" class="Symbol">=</a> <a id="1252" href="../../../../../../Data/List/Membership/Setoid/Properties/#3614" class="Function">Membership.unique⇒irrelevant</a> <a id="1281" class="Symbol">(</a><a id="1282" href="../../../../../../Relation/Binary/PropositionalEquality/Properties/#5799" class="Function">≡.setoid</a> <a id="1291" class="Symbol">_)</a> <a id="1294" href="../../../../../../Relation/Binary/PropositionalEquality/WithK/#1041" class="Function">≡-irrelevant</a>
 
 <a id="unique∧set⇒bag"></a><a id="1308" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1308" class="Function">unique∧set⇒bag</a> <a id="1323" class="Symbol">:</a> <a id="1325" href="../../../../../../Data/List/Relation/Unary/Unique/Setoid/#608" class="Datatype">Unique</a> <a id="1332" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1076" class="Generalizable">xs</a> <a id="1335" class="Symbol">→</a> <a id="1337" href="../../../../../../Data/List/Relation/Unary/Unique/Setoid/#608" class="Datatype">Unique</a> <a id="1344" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1079" class="Generalizable">ys</a> <a id="1347" class="Symbol">→</a> <a id="1349" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1076" class="Generalizable">xs</a> <a id="1352" href="../../../../../../Data/List/Relation/Binary/BagAndSetEquality/#3527" class="Function Operator">∼[</a> <a id="1355" class="InductiveConstructor">set</a> <a id="1359" href="../../../../../../Data/List/Relation/Binary/BagAndSetEquality/#3527" class="Function Operator">]</a> <a id="1361" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1079" class="Generalizable">ys</a> <a id="1364" class="Symbol">→</a> <a id="1366" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1076" class="Generalizable">xs</a> <a id="1369" href="../../../../../../Data/List/Relation/Binary/BagAndSetEquality/#3527" class="Function Operator">∼[</a> <a id="1372" class="InductiveConstructor">bag</a> <a id="1376" href="../../../../../../Data/List/Relation/Binary/BagAndSetEquality/#3527" class="Function Operator">]</a> <a id="1378" href="../../../../../../Data/List/Membership/Propositional/Properties/WithK/#1079" class="Generalizable">ys</a>

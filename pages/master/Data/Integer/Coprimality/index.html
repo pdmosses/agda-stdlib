@@ -81,7 +81,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="primary">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -61972,34 +61972,9 @@
           
             <div class="md-content" data-md-component="content">
               
-                <!--
-  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+                
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
 
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-<!-- Copyright notice copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/path.html
-     Code copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/path.html
-     Edited for use in agda2pages by @pdmosses
- -->
 
 
 
@@ -62080,7 +62055,7 @@
 
 <a id="231" class="Keyword">module</a> <a id="238" href="../../../Data/Integer/Coprimality/" class="Module">Data.Integer.Coprimality</a> <a id="263" class="Keyword">where</a>
 
-<a id="270" class="Keyword">open</a> <a id="275" class="Keyword">import</a> <a id="282" href="../../../Data/Integer/Base/" class="Module">Data.Integer.Base</a> <a id="300" class="Keyword">using</a> <a id="306" class="Symbol">(</a><a id="307" href="../../../Agda/Builtin/Int/#245" class="Datatype">ℤ</a><a id="308" class="Symbol">;</a> <a id="310" href="../../../Data/Integer/Base/#5438" class="Function Operator">_*_</a><a id="313" class="Symbol">;</a> <a id="315" href="../../../Data/Integer/Base/#1704" class="Function Operator">∣_∣</a><a id="318" class="Symbol">)</a>
+<a id="270" class="Keyword">open</a> <a id="275" class="Keyword">import</a> <a id="282" href="../../../Data/Integer/Base/" class="Module">Data.Integer.Base</a> <a id="300" class="Keyword">using</a> <a id="306" class="Symbol">(</a><a id="307" href="../../../Agda/Builtin/Int/#245" class="Datatype">ℤ</a><a id="308" class="Symbol">;</a> <a id="310" href="../../../Data/Integer/Base/#5446" class="Function Operator">_*_</a><a id="313" class="Symbol">;</a> <a id="315" href="../../../Data/Integer/Base/#1712" class="Function Operator">∣_∣</a><a id="318" class="Symbol">)</a>
 <a id="320" class="Keyword">open</a> <a id="325" class="Keyword">import</a> <a id="332" href="../../../Data/Integer/Divisibility/" class="Module">Data.Integer.Divisibility</a> <a id="358" class="Keyword">using</a> <a id="364" class="Symbol">(</a><a id="365" href="../../../Data/Integer/Divisibility/#853" class="Function Operator">_∣_</a><a id="368" class="Symbol">)</a>
 <a id="370" class="Keyword">open</a> <a id="375" class="Keyword">import</a> <a id="382" href="../../../Data/Integer/Properties/" class="Module">Data.Integer.Properties</a> <a id="406" class="Keyword">using</a> <a id="412" class="Symbol">(</a><a id="413" href="../../../Data/Integer/Properties/#53321" class="Function">abs-*</a><a id="418" class="Symbol">)</a>
 <a id="420" class="Keyword">import</a> <a id="427" href="../../../Data/Nat/Coprimality/" class="Module">Data.Nat.Coprimality</a> <a id="448" class="Symbol">as</a> <a id="451" class="Module">ℕ</a>
@@ -62096,7 +62071,7 @@
 <a id="874" class="Comment">-- Definition</a>
 
 <a id="Coprime"></a><a id="889" href="../../../Data/Integer/Coprimality/#889" class="Function">Coprime</a> <a id="897" class="Symbol">:</a> <a id="899" href="../../../Relation/Binary/Core/#887" class="Function">Rel</a> <a id="903" href="../../../Agda/Builtin/Int/#245" class="Datatype">ℤ</a> <a id="905" href="../../../Level/#512" class="Function">0ℓ</a>
-<a id="908" href="../../../Data/Integer/Coprimality/#889" class="Function">Coprime</a> <a id="916" class="Symbol">=</a> <a id="918" href="../../../Data/Nat/Coprimality/#1412" class="Function">ℕ.Coprime</a> <a id="928" href="../../../Function/Base/#6328" class="Function Operator">on</a> <a id="931" href="../../../Data/Integer/Base/#1704" class="Function Operator">∣_∣</a>
+<a id="908" href="../../../Data/Integer/Coprimality/#889" class="Function">Coprime</a> <a id="916" class="Symbol">=</a> <a id="918" href="../../../Data/Nat/Coprimality/#1412" class="Function">ℕ.Coprime</a> <a id="928" href="../../../Function/Base/#6328" class="Function Operator">on</a> <a id="931" href="../../../Data/Integer/Base/#1712" class="Function Operator">∣_∣</a>
 
 <a id="936" class="Comment">------------------------------------------------------------------------</a>
 <a id="1009" class="Comment">-- Properties of coprimality</a>
@@ -62105,11 +62080,11 @@
 <a id="1063" href="../../../Data/Integer/Coprimality/#1039" class="Function">sym</a> <a id="1067" class="Symbol">=</a> <a id="1069" href="../../../Data/Nat/Coprimality/#2332" class="Function">ℕ.sym</a>
 
 <a id="coprime?"></a><a id="1076" href="../../../Data/Integer/Coprimality/#1076" class="Function">coprime?</a> <a id="1085" class="Symbol">:</a> <a id="1087" href="../../../Relation/Binary/Definitions/#7972" class="Function">Decidable</a> <a id="1097" href="../../../Data/Integer/Coprimality/#889" class="Function">Coprime</a>
-<a id="1105" href="../../../Data/Integer/Coprimality/#1076" class="Function">coprime?</a> <a id="1114" href="../../../Data/Integer/Coprimality/#1114" class="Bound">x</a> <a id="1116" href="../../../Data/Integer/Coprimality/#1116" class="Bound">y</a> <a id="1118" class="Symbol">=</a> <a id="1120" href="../../../Data/Nat/Coprimality/#2374" class="Function">ℕ.coprime?</a> <a id="1131" href="../../../Data/Integer/Base/#1704" class="Function Operator">∣</a> <a id="1133" href="../../../Data/Integer/Coprimality/#1114" class="Bound">x</a> <a id="1135" href="../../../Data/Integer/Base/#1704" class="Function Operator">∣</a> <a id="1137" href="../../../Data/Integer/Base/#1704" class="Function Operator">∣</a> <a id="1139" href="../../../Data/Integer/Coprimality/#1116" class="Bound">y</a> <a id="1141" href="../../../Data/Integer/Base/#1704" class="Function Operator">∣</a>
+<a id="1105" href="../../../Data/Integer/Coprimality/#1076" class="Function">coprime?</a> <a id="1114" href="../../../Data/Integer/Coprimality/#1114" class="Bound">x</a> <a id="1116" href="../../../Data/Integer/Coprimality/#1116" class="Bound">y</a> <a id="1118" class="Symbol">=</a> <a id="1120" href="../../../Data/Nat/Coprimality/#2374" class="Function">ℕ.coprime?</a> <a id="1131" href="../../../Data/Integer/Base/#1712" class="Function Operator">∣</a> <a id="1133" href="../../../Data/Integer/Coprimality/#1114" class="Bound">x</a> <a id="1135" href="../../../Data/Integer/Base/#1712" class="Function Operator">∣</a> <a id="1137" href="../../../Data/Integer/Base/#1712" class="Function Operator">∣</a> <a id="1139" href="../../../Data/Integer/Coprimality/#1116" class="Bound">y</a> <a id="1141" href="../../../Data/Integer/Base/#1712" class="Function Operator">∣</a>
 
-<a id="coprime-divisor"></a><a id="1144" href="../../../Data/Integer/Coprimality/#1144" class="Function">coprime-divisor</a> <a id="1160" class="Symbol">:</a> <a id="1162" class="Symbol">∀</a> <a id="1164" href="../../../Data/Integer/Coprimality/#1164" class="Bound">i</a> <a id="1166" href="../../../Data/Integer/Coprimality/#1166" class="Bound">j</a> <a id="1168" href="../../../Data/Integer/Coprimality/#1168" class="Bound">k</a> <a id="1170" class="Symbol">→</a> <a id="1172" href="../../../Data/Integer/Coprimality/#889" class="Function">Coprime</a> <a id="1180" href="../../../Data/Integer/Coprimality/#1164" class="Bound">i</a> <a id="1182" href="../../../Data/Integer/Coprimality/#1166" class="Bound">j</a> <a id="1184" class="Symbol">→</a> <a id="1186" href="../../../Data/Integer/Coprimality/#1164" class="Bound">i</a> <a id="1188" href="../../../Data/Integer/Divisibility/#853" class="Function Operator">∣</a> <a id="1190" href="../../../Data/Integer/Coprimality/#1166" class="Bound">j</a> <a id="1192" href="../../../Data/Integer/Base/#5438" class="Function Operator">*</a> <a id="1194" href="../../../Data/Integer/Coprimality/#1168" class="Bound">k</a> <a id="1196" class="Symbol">→</a> <a id="1198" href="../../../Data/Integer/Coprimality/#1164" class="Bound">i</a> <a id="1200" href="../../../Data/Integer/Divisibility/#853" class="Function Operator">∣</a> <a id="1202" href="../../../Data/Integer/Coprimality/#1168" class="Bound">k</a>
+<a id="coprime-divisor"></a><a id="1144" href="../../../Data/Integer/Coprimality/#1144" class="Function">coprime-divisor</a> <a id="1160" class="Symbol">:</a> <a id="1162" class="Symbol">∀</a> <a id="1164" href="../../../Data/Integer/Coprimality/#1164" class="Bound">i</a> <a id="1166" href="../../../Data/Integer/Coprimality/#1166" class="Bound">j</a> <a id="1168" href="../../../Data/Integer/Coprimality/#1168" class="Bound">k</a> <a id="1170" class="Symbol">→</a> <a id="1172" href="../../../Data/Integer/Coprimality/#889" class="Function">Coprime</a> <a id="1180" href="../../../Data/Integer/Coprimality/#1164" class="Bound">i</a> <a id="1182" href="../../../Data/Integer/Coprimality/#1166" class="Bound">j</a> <a id="1184" class="Symbol">→</a> <a id="1186" href="../../../Data/Integer/Coprimality/#1164" class="Bound">i</a> <a id="1188" href="../../../Data/Integer/Divisibility/#853" class="Function Operator">∣</a> <a id="1190" href="../../../Data/Integer/Coprimality/#1166" class="Bound">j</a> <a id="1192" href="../../../Data/Integer/Base/#5446" class="Function Operator">*</a> <a id="1194" href="../../../Data/Integer/Coprimality/#1168" class="Bound">k</a> <a id="1196" class="Symbol">→</a> <a id="1198" href="../../../Data/Integer/Coprimality/#1164" class="Bound">i</a> <a id="1200" href="../../../Data/Integer/Divisibility/#853" class="Function Operator">∣</a> <a id="1202" href="../../../Data/Integer/Coprimality/#1168" class="Bound">k</a>
 <a id="1204" href="../../../Data/Integer/Coprimality/#1144" class="Function">coprime-divisor</a> <a id="1220" href="../../../Data/Integer/Coprimality/#1220" class="Bound">i</a> <a id="1222" href="../../../Data/Integer/Coprimality/#1222" class="Bound">j</a> <a id="1224" href="../../../Data/Integer/Coprimality/#1224" class="Bound">k</a> <a id="1226" href="../../../Data/Integer/Coprimality/#1226" class="Bound">c</a> <a id="1228" href="../../../Data/Integer/Coprimality/#1228" class="Bound">eq</a> <a id="1231" class="Symbol">=</a>
-  <a id="1235" href="../../../Data/Nat/Coprimality/#3967" class="Function">ℕ.coprime-divisor</a> <a id="1253" href="../../../Data/Integer/Coprimality/#1226" class="Bound">c</a> <a id="1255" class="Symbol">(</a><a id="1256" href="../../../Relation/Binary/PropositionalEquality/Core/#2186" class="Function">subst</a> <a id="1262" class="Symbol">(</a><a id="1263" href="../../../Data/Integer/Base/#1704" class="Function Operator">∣</a> <a id="1265" href="../../../Data/Integer/Coprimality/#1220" class="Bound">i</a> <a id="1267" href="../../../Data/Integer/Base/#1704" class="Function Operator">∣</a> <a id="1269" href="../../../Data/Nat/Divisibility/Core/#1182" class="Record Operator">ℕ.∣_</a> <a id="1274" class="Symbol">)</a> <a id="1276" class="Symbol">(</a><a id="1277" href="../../../Data/Integer/Properties/#53321" class="Function">abs-*</a> <a id="1283" href="../../../Data/Integer/Coprimality/#1222" class="Bound">j</a> <a id="1285" href="../../../Data/Integer/Coprimality/#1224" class="Bound">k</a><a id="1286" class="Symbol">)</a> <a id="1288" href="../../../Data/Integer/Coprimality/#1228" class="Bound">eq</a><a id="1290" class="Symbol">)</a>
+  <a id="1235" href="../../../Data/Nat/Coprimality/#3967" class="Function">ℕ.coprime-divisor</a> <a id="1253" href="../../../Data/Integer/Coprimality/#1226" class="Bound">c</a> <a id="1255" class="Symbol">(</a><a id="1256" href="../../../Relation/Binary/PropositionalEquality/Core/#2186" class="Function">subst</a> <a id="1262" class="Symbol">(</a><a id="1263" href="../../../Data/Integer/Base/#1712" class="Function Operator">∣</a> <a id="1265" href="../../../Data/Integer/Coprimality/#1220" class="Bound">i</a> <a id="1267" href="../../../Data/Integer/Base/#1712" class="Function Operator">∣</a> <a id="1269" href="../../../Data/Nat/Divisibility/Core/#1182" class="Record Operator">ℕ.∣_</a> <a id="1274" class="Symbol">)</a> <a id="1276" class="Symbol">(</a><a id="1277" href="../../../Data/Integer/Properties/#53321" class="Function">abs-*</a> <a id="1283" href="../../../Data/Integer/Coprimality/#1222" class="Bound">j</a> <a id="1285" href="../../../Data/Integer/Coprimality/#1224" class="Bound">k</a><a id="1286" class="Symbol">)</a> <a id="1288" href="../../../Data/Integer/Coprimality/#1228" class="Bound">eq</a><a id="1290" class="Symbol">)</a>
 </code></pre>
 
 

@@ -81,7 +81,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="primary">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -61972,34 +61972,9 @@
           
             <div class="md-content" data-md-component="content">
               
-                <!--
-  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+                
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
 
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-<!-- Copyright notice copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/path.html
-     Code copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/path.html
-     Edited for use in agda2pages by @pdmosses
- -->
 
 
 
@@ -62090,7 +62065,7 @@
 <a id="683" class="Keyword">open</a> <a id="688" class="Keyword">import</a> <a id="695" href="../../../Level/" class="Module">Level</a> <a id="701" class="Keyword">using</a> <a id="707" class="Symbol">(</a><a id="708" href="../../../Agda/Primitive/#742" class="Postulate">Level</a><a id="713" class="Symbol">)</a>
 <a id="715" class="Keyword">open</a> <a id="720" class="Keyword">import</a> <a id="727" href="../../../Relation/Binary/PropositionalEquality/Core/" class="Module">Relation.Binary.PropositionalEquality.Core</a> <a id="770" class="Keyword">using</a> <a id="776" class="Symbol">(</a><a id="777" href="../../../Agda/Builtin/Equality/#150" class="Datatype Operator">_≡_</a><a id="780" class="Symbol">;</a> <a id="782" href="../../../Agda/Builtin/Equality/#207" class="InductiveConstructor">refl</a><a id="786" class="Symbol">;</a> <a id="788" href="../../../Relation/Binary/PropositionalEquality/Core/#2135" class="Function">trans</a><a id="793" class="Symbol">;</a> <a id="795" href="../../../Relation/Binary/PropositionalEquality/Core/#1536" class="Function">cong</a><a id="799" class="Symbol">)</a>
 <a id="801" class="Keyword">open</a> <a id="806" class="Keyword">import</a> <a id="813" href="../../../Relation/Nullary/Decidable/Core/" class="Module">Relation.Nullary.Decidable.Core</a> <a id="845" class="Keyword">using</a> <a id="851" class="Symbol">(</a><a id="852" href="../../../Relation/Nullary/Decidable/Core/#2029" class="Field">does</a><a id="856" class="Symbol">;</a> <a id="858" href="../../../Relation/Nullary/Decidable/Core/#3213" class="Function">T?</a><a id="860" class="Symbol">)</a>
-<a id="862" class="Keyword">open</a> <a id="867" class="Keyword">import</a> <a id="874" href="../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="889" class="Keyword">using</a> <a id="895" class="Symbol">(</a><a id="896" href="../../../Relation/Unary/#1214" class="Function">Pred</a><a id="900" class="Symbol">;</a> <a id="902" href="../../../Relation/Unary/#4579" class="Function">Decidable</a><a id="911" class="Symbol">)</a>
+<a id="862" class="Keyword">open</a> <a id="867" class="Keyword">import</a> <a id="874" href="../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="889" class="Keyword">using</a> <a id="895" class="Symbol">(</a><a id="896" href="../../../Relation/Unary/#1214" class="Function">Pred</a><a id="900" class="Symbol">;</a> <a id="902" href="../../../Relation/Unary/#4536" class="Function">Decidable</a><a id="911" class="Symbol">)</a>
 
 <a id="914" class="Keyword">private</a>
   <a id="924" class="Keyword">variable</a>
@@ -62302,7 +62277,7 @@
 <a id="sum"></a><a id="6096" href="../../../Data/Vec/Base/#6096" class="Function">sum</a> <a id="6100" class="Symbol">:</a> <a id="6102" href="../../../Data/Vec/Base/#1110" class="Datatype">Vec</a> <a id="6106" href="../../../Agda/Builtin/Nat/#203" class="Datatype">ℕ</a> <a id="6108" href="../../../Data/Vec/Base/#1001" class="Generalizable">n</a> <a id="6110" class="Symbol">→</a> <a id="6112" href="../../../Agda/Builtin/Nat/#203" class="Datatype">ℕ</a>
 <a id="6114" href="../../../Data/Vec/Base/#6096" class="Function">sum</a> <a id="6118" class="Symbol">=</a> <a id="6120" href="../../../Data/Vec/Base/#5415" class="Function">foldr</a> <a id="6126" class="Symbol">_</a> <a id="6128" href="../../../Agda/Builtin/Nat/#336" class="Primitive Operator">_+_</a> <a id="6132" class="Number">0</a>
 
-<a id="count"></a><a id="6135" href="../../../Data/Vec/Base/#6135" class="Function">count</a> <a id="6141" class="Symbol">:</a> <a id="6143" class="Symbol">∀</a> <a id="6145" class="Symbol">{</a><a id="6146" href="../../../Data/Vec/Base/#6146" class="Bound">P</a> <a id="6148" class="Symbol">:</a> <a id="6150" href="../../../Relation/Unary/#1214" class="Function">Pred</a> <a id="6155" href="../../../Data/Vec/Base/#957" class="Generalizable">A</a> <a id="6157" href="../../../Data/Vec/Base/#943" class="Generalizable">p</a><a id="6158" class="Symbol">}</a> <a id="6160" class="Symbol">→</a> <a id="6162" href="../../../Relation/Unary/#4579" class="Function">Decidable</a> <a id="6172" href="../../../Data/Vec/Base/#6146" class="Bound">P</a> <a id="6174" class="Symbol">→</a> <a id="6176" href="../../../Data/Vec/Base/#1110" class="Datatype">Vec</a> <a id="6180" href="../../../Data/Vec/Base/#957" class="Generalizable">A</a> <a id="6182" href="../../../Data/Vec/Base/#1001" class="Generalizable">n</a> <a id="6184" class="Symbol">→</a> <a id="6186" href="../../../Agda/Builtin/Nat/#203" class="Datatype">ℕ</a>
+<a id="count"></a><a id="6135" href="../../../Data/Vec/Base/#6135" class="Function">count</a> <a id="6141" class="Symbol">:</a> <a id="6143" class="Symbol">∀</a> <a id="6145" class="Symbol">{</a><a id="6146" href="../../../Data/Vec/Base/#6146" class="Bound">P</a> <a id="6148" class="Symbol">:</a> <a id="6150" href="../../../Relation/Unary/#1214" class="Function">Pred</a> <a id="6155" href="../../../Data/Vec/Base/#957" class="Generalizable">A</a> <a id="6157" href="../../../Data/Vec/Base/#943" class="Generalizable">p</a><a id="6158" class="Symbol">}</a> <a id="6160" class="Symbol">→</a> <a id="6162" href="../../../Relation/Unary/#4536" class="Function">Decidable</a> <a id="6172" href="../../../Data/Vec/Base/#6146" class="Bound">P</a> <a id="6174" class="Symbol">→</a> <a id="6176" href="../../../Data/Vec/Base/#1110" class="Datatype">Vec</a> <a id="6180" href="../../../Data/Vec/Base/#957" class="Generalizable">A</a> <a id="6182" href="../../../Data/Vec/Base/#1001" class="Generalizable">n</a> <a id="6184" class="Symbol">→</a> <a id="6186" href="../../../Agda/Builtin/Nat/#203" class="Datatype">ℕ</a>
 <a id="6188" href="../../../Data/Vec/Base/#6135" class="Function">count</a> <a id="6194" href="../../../Data/Vec/Base/#6194" class="Bound">P?</a> <a id="6197" href="../../../Data/Vec/Base/#1146" class="InductiveConstructor">[]</a>       <a id="6206" class="Symbol">=</a> <a id="6208" href="../../../Agda/Builtin/Nat/#221" class="InductiveConstructor">zero</a>
 <a id="6213" href="../../../Data/Vec/Base/#6135" class="Function">count</a> <a id="6219" href="../../../Data/Vec/Base/#6219" class="Bound">P?</a> <a id="6222" class="Symbol">(</a><a id="6223" href="../../../Data/Vec/Base/#6223" class="Bound">x</a> <a id="6225" href="../../../Data/Vec/Base/#1165" class="InductiveConstructor Operator">∷</a> <a id="6227" href="../../../Data/Vec/Base/#6227" class="Bound">xs</a><a id="6229" class="Symbol">)</a> <a id="6231" class="Symbol">=</a> <a id="6233" href="../../../Data/Bool/Base/#1506" class="Function Operator">if</a> <a id="6236" href="../../../Relation/Nullary/Decidable/Core/#2029" class="Field">does</a> <a id="6241" class="Symbol">(</a><a id="6242" href="../../../Data/Vec/Base/#6219" class="Bound">P?</a> <a id="6245" href="../../../Data/Vec/Base/#6223" class="Bound">x</a><a id="6246" class="Symbol">)</a> <a id="6248" href="../../../Data/Bool/Base/#1506" class="Function Operator">then</a> <a id="6253" href="../../../Agda/Builtin/Nat/#234" class="InductiveConstructor">suc</a> <a id="6257" href="../../../Data/Bool/Base/#1506" class="Function Operator">else</a> <a id="6262" href="../../../Function/Base/#695" class="Function">id</a> <a id="6265" href="../../../Function/Base/#1984" class="Function Operator">$</a> <a id="6267" href="../../../Data/Vec/Base/#6135" class="Function">count</a> <a id="6273" href="../../../Data/Vec/Base/#6219" class="Bound">P?</a> <a id="6276" href="../../../Data/Vec/Base/#6227" class="Bound">xs</a>
 

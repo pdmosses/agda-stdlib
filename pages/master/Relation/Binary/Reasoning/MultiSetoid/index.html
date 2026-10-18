@@ -81,7 +81,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="primary">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -61974,34 +61974,9 @@
           
             <div class="md-content" data-md-component="content">
               
-                <!--
-  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+                
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
 
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-<!-- Copyright notice copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/path.html
-     Code copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/path.html
-     Edited for use in agda2pages by @pdmosses
- -->
 
 
 
@@ -62156,9 +62131,9 @@
 <a id="2170" class="Keyword">module</a> <a id="2177" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2177" class="Module">_</a> <a id="2179" class="Symbol">{</a><a id="2180" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a> <a id="2182" class="Symbol">:</a> <a id="2184" href="../../../../Relation/Binary/Bundles/#1226" class="Record">Setoid</a> <a id="2191" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1258" class="Generalizable">a</a> <a id="2193" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1260" class="Generalizable">ℓ</a><a id="2194" class="Symbol">}</a> <a id="2196" class="Keyword">where</a>
   <a id="2204" class="Keyword">open</a> <a id="2209" href="../../../../Relation/Binary/Bundles/#1226" class="Module">Setoid</a> <a id="2216" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a>
 
-  <a id="2221" class="Keyword">open</a> <a id="2226" href="../../../../Relation/Binary/Reasoning/Syntax/#10936" class="Module">≡-syntax</a> <a id="2235" class="Symbol">(</a><a id="2236" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1470" class="Datatype">IsRelatedTo</a> <a id="2248" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2249" class="Symbol">)</a> <a id="2251" class="Symbol">(</a><a id="2252" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1614" class="Function">≡-go</a> <a id="2257" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2258" class="Symbol">)</a>
+  <a id="2221" class="Keyword">open</a> <a id="2226" href="../../../../Relation/Binary/Reasoning/Syntax/#10908" class="Module">≡-syntax</a> <a id="2235" class="Symbol">(</a><a id="2236" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1470" class="Datatype">IsRelatedTo</a> <a id="2248" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2249" class="Symbol">)</a> <a id="2251" class="Symbol">(</a><a id="2252" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1614" class="Function">≡-go</a> <a id="2257" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2258" class="Symbol">)</a>
   <a id="2262" class="Keyword">open</a> <a id="2267" href="../../../../Relation/Binary/Reasoning/Syntax/#7048" class="Module">≈-syntax</a> <a id="2276" class="Symbol">(</a><a id="2277" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1470" class="Datatype">IsRelatedTo</a> <a id="2289" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2290" class="Symbol">)</a> <a id="2292" class="Symbol">(</a><a id="2293" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1470" class="Datatype">IsRelatedTo</a> <a id="2305" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2306" class="Symbol">)</a> <a id="2308" class="Symbol">(</a><a id="2309" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1724" class="Function">≈-go</a> <a id="2314" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2315" class="Symbol">)</a> <a id="2317" href="../../../../Relation/Binary/Structures/#1236" class="Function">sym</a> <a id="2321" class="Keyword">public</a>
-  <a id="2330" class="Keyword">open</a> <a id="2335" href="../../../../Relation/Binary/Reasoning/Syntax/#12255" class="Module">end-syntax</a> <a id="2346" class="Symbol">(</a><a id="2347" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1470" class="Datatype">IsRelatedTo</a> <a id="2359" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2360" class="Symbol">)</a> <a id="2362" class="Symbol">(</a><a id="2363" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1815" class="Function">end</a> <a id="2367" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2368" class="Symbol">)</a> <a id="2370" class="Keyword">public</a>
+  <a id="2330" class="Keyword">open</a> <a id="2335" href="../../../../Relation/Binary/Reasoning/Syntax/#12220" class="Module">end-syntax</a> <a id="2346" class="Symbol">(</a><a id="2347" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1470" class="Datatype">IsRelatedTo</a> <a id="2359" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2360" class="Symbol">)</a> <a id="2362" class="Symbol">(</a><a id="2363" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#1815" class="Function">end</a> <a id="2367" href="../../../../Relation/Binary/Reasoning/MultiSetoid/#2180" class="Bound">S</a><a id="2368" class="Symbol">)</a> <a id="2370" class="Keyword">public</a>
 </code></pre>
 
 

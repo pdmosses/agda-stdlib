@@ -81,7 +81,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="primary">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -61972,34 +61972,9 @@
           
             <div class="md-content" data-md-component="content">
               
-                <!--
-  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+                
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
 
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-<!-- Copyright notice copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/path.html
-     Code copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/path.html
-     Edited for use in agda2pages by @pdmosses
- -->
 
 
 
@@ -62099,7 +62074,7 @@
 <a id="1060" class="Keyword">open</a> <a id="1065" class="Keyword">import</a> <a id="1072" href="../../../Relation/Nullary/Decidable/Core/" class="Module">Relation.Nullary.Decidable.Core</a> <a id="1104" class="Keyword">using</a> <a id="1110" class="Symbol">(</a><a id="1111" href="../../../Relation/Nullary/Decidable/Core/#2096" class="InductiveConstructor">yes</a><a id="1114" class="Symbol">;</a> <a id="1116" href="../../../Relation/Nullary/Decidable/Core/#2133" class="InductiveConstructor">no</a><a id="1118" class="Symbol">)</a>
 <a id="1120" class="Keyword">open</a> <a id="1125" class="Keyword">import</a> <a id="1132" href="../../../Relation/Nullary/Negation/Core/" class="Module">Relation.Nullary.Negation.Core</a> <a id="1163" class="Keyword">using</a> <a id="1169" class="Symbol">(</a><a id="1170" href="../../../Relation/Nullary/Negation/Core/#1851" class="Function">contradiction</a><a id="1183" class="Symbol">)</a>
 <a id="1185" class="Keyword">open</a> <a id="1190" class="Keyword">import</a> <a id="1197" href="../../../Relation/Nullary/Recomputable/" class="Module">Relation.Nullary.Recomputable</a> <a id="1227" class="Keyword">using</a> <a id="1233" class="Symbol">(</a><a id="1234" href="../../../Relation/Nullary/Recomputable/#1518" class="Function">¬-recompute</a><a id="1245" class="Symbol">)</a>
-<a id="1247" class="Keyword">open</a> <a id="1252" class="Keyword">import</a> <a id="1259" href="../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="1274" class="Keyword">using</a> <a id="1280" class="Symbol">(</a><a id="1281" href="../../../Relation/Unary/#1214" class="Function">Pred</a><a id="1285" class="Symbol">;</a> <a id="1287" href="../../../Relation/Unary/#4579" class="Function">Decidable</a><a id="1296" class="Symbol">)</a>
+<a id="1247" class="Keyword">open</a> <a id="1252" class="Keyword">import</a> <a id="1259" href="../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="1274" class="Keyword">using</a> <a id="1280" class="Symbol">(</a><a id="1281" href="../../../Relation/Unary/#1214" class="Function">Pred</a><a id="1285" class="Symbol">;</a> <a id="1287" href="../../../Relation/Unary/#4536" class="Function">Decidable</a><a id="1296" class="Symbol">)</a>
 
 
 <a id="1300" class="Keyword">private</a>
@@ -62146,7 +62121,7 @@
     <a id="2532" href="../../../Data/Sum/Base/#971" class="Function Operator">[</a> <a id="2534" href="../../../Function/Base/#1648" class="Function">flip</a> <a id="2539" href="../../../Relation/Nullary/Negation/Core/#1851" class="Function">contradiction</a> <a id="2553" class="Symbol">(</a><a id="2554" href="../../../Relation/Nullary/Recomputable/#1518" class="Function">¬-recompute</a> <a id="2566" href="../../../Algebra/Consequences/Base/#2520" class="Bound">¬px</a><a id="2569" class="Symbol">)</a> <a id="2571" href="../../../Data/Sum/Base/#971" class="Function Operator">,</a> <a id="2573" class="Symbol">(λ</a> <a id="2576" href="../../../Algebra/Consequences/Base/#2576" class="Bound">cancel</a> <a id="2583" class="Symbol">→</a> <a id="2585" href="../../../Algebra/Consequences/Base/#2576" class="Bound">cancel</a> <a id="2592" href="../../../Algebra/Consequences/Base/#2514" class="Bound">y</a> <a id="2594" href="../../../Algebra/Consequences/Base/#2516" class="Bound">z</a><a id="2595" class="Symbol">)</a> <a id="2597" href="../../../Data/Sum/Base/#971" class="Function Operator">]′</a> <a id="2600" class="Symbol">(</a><a id="2601" href="../../../Algebra/Consequences/Base/#2505" class="Bound">cancel</a> <a id="2608" href="../../../Algebra/Consequences/Base/#2512" class="Bound">x</a><a id="2609" class="Symbol">)</a>
 
 <a id="2612" class="Keyword">module</a> <a id="2619" href="../../../Algebra/Consequences/Base/#2619" class="Module">_</a> <a id="2621" class="Symbol">{</a><a id="2622" href="../../../Algebra/Consequences/Base/#2622" class="Bound">p</a><a id="2623" class="Symbol">}</a> <a id="2625" class="Symbol">{</a><a id="2626" href="../../../Algebra/Consequences/Base/#2626" class="Bound Operator">_∙_</a> <a id="2630" class="Symbol">:</a> <a id="2632" href="../../../Algebra/Core/#518" class="Function">Op₂</a> <a id="2636" href="../../../Algebra/Consequences/Base/#447" class="Bound">A</a><a id="2637" class="Symbol">}</a> <a id="2639" class="Symbol">(</a><a id="2640" href="../../../Algebra/Consequences/Base/#2640" class="Bound Operator">_≈_</a> <a id="2644" class="Symbol">:</a> <a id="2646" href="../../../Relation/Binary/Core/#887" class="Function">Rel</a> <a id="2650" href="../../../Algebra/Consequences/Base/#447" class="Bound">A</a> <a id="2652" href="../../../Algebra/Consequences/Base/#443" class="Bound">ℓ</a><a id="2653" class="Symbol">)</a>
-         <a id="2664" class="Symbol">{</a><a id="2665" href="../../../Algebra/Consequences/Base/#2665" class="Bound">P</a> <a id="2667" class="Symbol">:</a> <a id="2669" href="../../../Relation/Unary/#1214" class="Function">Pred</a> <a id="2674" href="../../../Algebra/Consequences/Base/#447" class="Bound">A</a> <a id="2676" href="../../../Algebra/Consequences/Base/#2622" class="Bound">p</a><a id="2677" class="Symbol">}</a> <a id="2679" class="Symbol">(</a><a id="2680" href="../../../Algebra/Consequences/Base/#2680" class="Bound">dec</a> <a id="2684" class="Symbol">:</a> <a id="2686" href="../../../Relation/Unary/#4579" class="Function">Decidable</a> <a id="2696" href="../../../Algebra/Consequences/Base/#2665" class="Bound">P</a><a id="2697" class="Symbol">)</a> <a id="2699" class="Keyword">where</a>
+         <a id="2664" class="Symbol">{</a><a id="2665" href="../../../Algebra/Consequences/Base/#2665" class="Bound">P</a> <a id="2667" class="Symbol">:</a> <a id="2669" href="../../../Relation/Unary/#1214" class="Function">Pred</a> <a id="2674" href="../../../Algebra/Consequences/Base/#447" class="Bound">A</a> <a id="2676" href="../../../Algebra/Consequences/Base/#2622" class="Bound">p</a><a id="2677" class="Symbol">}</a> <a id="2679" class="Symbol">(</a><a id="2680" href="../../../Algebra/Consequences/Base/#2680" class="Bound">dec</a> <a id="2684" class="Symbol">:</a> <a id="2686" href="../../../Relation/Unary/#4536" class="Function">Decidable</a> <a id="2696" href="../../../Algebra/Consequences/Base/#2665" class="Bound">P</a><a id="2697" class="Symbol">)</a> <a id="2699" class="Keyword">where</a>
 
   <a id="2708" href="../../../Algebra/Consequences/Base/#2708" class="Function">except⇒almostˡ</a> <a id="2723" class="Symbol">:</a> <a id="2725" href="../../../Algebra/Definitions/#5372" class="Function Operator">Except_LeftCancellative_</a> <a id="2750" href="../../../Algebra/Consequences/Base/#2665" class="Bound">P</a> <a id="2752" href="../../../Algebra/Consequences/Base/#2626" class="Bound Operator">_∙_</a> <a id="2756" class="Symbol">→</a>
                    <a id="2777" href="../../../Algebra/Definitions/#5083" class="Function Operator">_AlmostLeftCancellative′_</a> <a id="2803" href="../../../Algebra/Consequences/Base/#2665" class="Bound">P</a> <a id="2805" href="../../../Algebra/Consequences/Base/#2626" class="Bound Operator">_∙_</a>

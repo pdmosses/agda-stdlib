@@ -81,7 +81,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="primary">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -61978,34 +61978,9 @@
           
             <div class="md-content" data-md-component="content">
               
-                <!--
-  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+                
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
 
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-<!-- Copyright notice copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/path.html
-     Code copied from:
-     https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/path.html
-     Edited for use in agda2pages by @pdmosses
- -->
 
 
 
@@ -62147,7 +62122,7 @@
 <a id="1045" class="Keyword">open</a> <a id="1050" class="Keyword">import</a> <a id="1057" href="../../../../../../Relation/Binary/Bundles/" class="Module">Relation.Binary.Bundles</a> <a id="1081" class="Keyword">using</a> <a id="1087" class="Symbol">(</a><a id="1088" href="../../../../../../Relation/Binary/Bundles/#1694" class="Record">DecSetoid</a><a id="1097" class="Symbol">)</a>
 <a id="1099" class="Keyword">open</a> <a id="1104" class="Keyword">import</a> <a id="1111" href="../../../../../../Relation/Binary/Definitions/" class="Module">Relation.Binary.Definitions</a> <a id="1139" class="Keyword">using</a> <a id="1145" class="Symbol">(</a><a id="1146" href="../../../../../../Relation/Binary/Definitions/#2066" class="Function">Transitive</a><a id="1156" class="Symbol">)</a>
 <a id="1158" class="Keyword">open</a> <a id="1163" class="Keyword">import</a> <a id="1170" href="../../../../../../Relation/Binary/PropositionalEquality/Core/" class="Module">Relation.Binary.PropositionalEquality.Core</a> <a id="1213" class="Keyword">using</a> <a id="1219" class="Symbol">(</a><a id="1220" href="../../../../../../Relation/Binary/PropositionalEquality/Core/#1055" class="Function Operator">_≢_</a><a id="1223" class="Symbol">)</a>
-<a id="1225" class="Keyword">open</a> <a id="1230" class="Keyword">import</a> <a id="1237" href="../../../../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="1252" class="Keyword">using</a> <a id="1258" class="Symbol">(</a><a id="1259" href="../../../../../../Relation/Unary/#1214" class="Function">Pred</a><a id="1263" class="Symbol">;</a> <a id="1265" href="../../../../../../Relation/Unary/#4579" class="Function">Decidable</a><a id="1274" class="Symbol">)</a>
+<a id="1225" class="Keyword">open</a> <a id="1230" class="Keyword">import</a> <a id="1237" href="../../../../../../Relation/Unary/" class="Module">Relation.Unary</a> <a id="1252" class="Keyword">using</a> <a id="1258" class="Symbol">(</a><a id="1259" href="../../../../../../Relation/Unary/#1214" class="Function">Pred</a><a id="1263" class="Symbol">;</a> <a id="1265" href="../../../../../../Relation/Unary/#4536" class="Function">Decidable</a><a id="1274" class="Symbol">)</a>
 <a id="1276" class="Keyword">open</a> <a id="1281" class="Keyword">import</a> <a id="1288" href="../../../../../../Relation/Nullary/Decidable/" class="Module">Relation.Nullary.Decidable</a> <a id="1315" class="Keyword">using</a> <a id="1321" class="Symbol">(</a><a id="1322" href="../../../../../../Relation/Nullary/Decidable/Core/#2096" class="InductiveConstructor">yes</a><a id="1325" class="Symbol">;</a> <a id="1327" href="../../../../../../Relation/Nullary/Decidable/Core/#2133" class="InductiveConstructor">no</a><a id="1329" class="Symbol">;</a> <a id="1331" href="../../../../../../Relation/Nullary/Decidable/Core/#2029" class="Field">does</a><a id="1335" class="Symbol">)</a>
 
 <a id="1338" class="Keyword">private</a>
@@ -62248,7 +62223,7 @@
 <a id="4566" class="Comment">------------------------------------------------------------------------</a>
 <a id="4639" class="Comment">-- filter</a>
 
-<a id="4650" class="Keyword">module</a> <a id="4657" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4657" class="Module">_</a> <a id="4659" class="Symbol">{</a><a id="4660" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4660" class="Bound">P</a> <a id="4662" class="Symbol">:</a> <a id="4664" href="../../../../../../Relation/Unary/#1214" class="Function">Pred</a> <a id="4669" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#1381" class="Generalizable">A</a> <a id="4671" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#1365" class="Generalizable">p</a><a id="4672" class="Symbol">}</a> <a id="4674" class="Symbol">(</a><a id="4675" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4675" class="Bound">P?</a> <a id="4678" class="Symbol">:</a> <a id="4680" href="../../../../../../Relation/Unary/#4579" class="Function">Decidable</a> <a id="4690" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4660" class="Bound">P</a><a id="4691" class="Symbol">)</a>
+<a id="4650" class="Keyword">module</a> <a id="4657" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4657" class="Module">_</a> <a id="4659" class="Symbol">{</a><a id="4660" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4660" class="Bound">P</a> <a id="4662" class="Symbol">:</a> <a id="4664" href="../../../../../../Relation/Unary/#1214" class="Function">Pred</a> <a id="4669" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#1381" class="Generalizable">A</a> <a id="4671" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#1365" class="Generalizable">p</a><a id="4672" class="Symbol">}</a> <a id="4674" class="Symbol">(</a><a id="4675" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4675" class="Bound">P?</a> <a id="4678" class="Symbol">:</a> <a id="4680" href="../../../../../../Relation/Unary/#4536" class="Function">Decidable</a> <a id="4690" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4660" class="Bound">P</a><a id="4691" class="Symbol">)</a>
          <a id="4702" class="Symbol">{</a><a id="4703" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4703" class="Bound">R</a> <a id="4705" class="Symbol">:</a> <a id="4707" href="../../../../../../Relation/Binary/Core/#887" class="Function">Rel</a> <a id="4711" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#1381" class="Generalizable">A</a> <a id="4713" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#1367" class="Generalizable">ℓ</a><a id="4714" class="Symbol">}</a> <a id="4716" class="Symbol">(</a><a id="4717" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4717" class="Bound">trans</a> <a id="4723" class="Symbol">:</a> <a id="4725" href="../../../../../../Relation/Binary/Definitions/#2066" class="Function">Transitive</a> <a id="4736" href="../../../../../../Data/List/Relation/Unary/Linked/Properties/#4703" class="Bound">R</a><a id="4737" class="Symbol">)</a>
          <a id="4748" class="Keyword">where</a>
 
