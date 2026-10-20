@@ -75,7 +75,8 @@ make serve
 While serving the website, running the [linkcheck] application reports:
 
 ```sh
-agda-stdlib: .../linkcheck/linkcheck -e :8020 --skip-file pages/agda-pages/skip.txt       
+agda-stdlib: .../linkcheck/linkcheck -e :8020 --skip-file pages/agda-pages/skip.txt
+     
 Perfect. Checked 1935504 links, 1215 destination URLs (1 ignored).
 ```
 
