@@ -1,7 +1,7 @@
 Version 3.0
 ===========
 
-The library has been tested using Agda 2.8.0.
+The library has been tested using Agda 2.8.0 and Agda 2.9.0.
 
 Highlights
 ----------
@@ -64,6 +64,12 @@ Bug-fixes
 
   As a further knock-on consequence, module `Algebra.Properties.KleeneAlgebra`
   has been completely rewritten in order to accommodate the new axiomatisation.
+
+* [issue #3128](https://github.com/agda/agda-stdlib/issues/3128)
+  `Data.Sum.Effectful.Left.Transformer.choice` corrected to choose between its
+  two arguments, rather than simply copy its first argument. The PR fixing this
+  also systematically makes better use of `variable`s, incorporating upstream
+  changes to avoid name shadowing in argument telescopes.
 
 * Refactored `Function.Bundles` to export `equivalence`, `toFunction`, and
   `fromFunction` from `*Inverse` with corresponding deprecations in
@@ -161,6 +167,13 @@ Non-backwards compatible changes
   the `record POINTWISE` has been lowered to `ℓ₁ ⊔ ℓ₂` given the universe levels
   `ℓ₁`, resp. `ℓ₂` of the argument relations `_R₁_`, resp. `_R₂_`.
 
+* [Issue #3127](https://github.com/agda/agda-stdlib/pull/3127)
+  Following an upstream breaking change prompted by a proof of false
+  ([Agda Issue #8557](https://github.com/agda/agda/issues/8557),
+  `Irrelevant` cannot be proved to be a monad within `--safe` anymore.
+  Correspondingly, the relevant definitions have been moved to the new
+  module `Data.Irrelevant.Unsafe`.
+
 Minor improvements
 ------------------
 
@@ -218,6 +231,12 @@ Deprecated names
 * In `Data.Integer.GCD`:
   ```agda
   gcd[0,0]≡0 ↦ gcd[i,i]≡∣i∣
+  ```
+
+* In `Data.Irrelevant`:
+  ```agda
+  λ∙⁻ ↦ _$⁺_
+  λ∙⁺ ↦ _$⁻_
   ```
 
 * In `Data.Nat.GCD`:
@@ -292,6 +311,9 @@ New modules
 * `Data.DifferenceList` has been refactored to reexport the contents of two new modules:
   - `Data.DifferenceList.Base`
   - `Data.DifferenceList.Properties`
+
+* `Data.Product.Nary.NonDependent.Properties` for properties of
+  nondependent heterogeneous N-ary products.
 
 * A new type of lists that grow on the right.
   This is typically useful to model contexts of typing rules
@@ -427,6 +449,13 @@ Additions to existing modules
            ∃[ xs ] Appending as bs xs × Appending xs cs ds
   ```
 
+* In `Data.List.Relation.Unary.All.Properties`:
+  ```agda
+  ¬Null-∷         : ¬ Null (x ∷ xs)
+  Null?           : Decidable Null
+  Null-irrelevant : Irrelevant Null
+  ```
+
 * In `Data.Nat.DivMod`:
   ```agda
   m<suc[m/n]*n : ∀ m n → m < suc (m / n) * n
@@ -469,6 +498,18 @@ Additions to existing modules
   ∃!-⇔ : P ≐ Q → ∃! _≈_ P ⇔ ∃! _≈_ Q
   ```
 
+* In `Data.Product.Nary.NonDependent`:
+  ```agda
+  append⊤ : ∀ m n {lsa lsb} {as : Sets m lsa} {bs : Sets n lsb} →
+          Product⊤ m as → Product⊤ n bs → Product⊤ (m + n) (sappend m n as bs)
+  append : ∀ m n {lsa lsb} {as : Sets m lsa} {bs : Sets n lsb} →
+          Product m as → Product n bs → Product (m + n) (sappend m n as bs)
+  splitAt⊤ : ∀ m n {lsa lsb} {as : Sets m lsa} {bs : Sets n lsb} →
+           Product⊤ (m + n) (sappend m n as bs) → (Product⊤ m as) × (Product⊤ n bs)
+  splitAt : ∀ m n {lsa lsb} {as : Sets m lsa} {bs : Sets n lsb} →
+          Product (m + n) (sappend m n as bs) → Product m as × Product n bs
+  ```
+
 * In `Data.Rational.Properties`:
   ```agda
   ↥[i/1]≡i  : (i : ℤ) → ↥ (i / 1) ≡ i
@@ -494,6 +535,16 @@ Additions to existing modules
   ```agda
   lookup-head : (xs : Vec A (suc n)) → lookup xs zero ≡ head xs
   lookup-tail : (xs : Vec A (suc n)) → lookup xs (suc i) ≡ lookup (tail xs) i
+  ```
+
+* In `Data.Vec.Relation.Binary.Pointwise.Inductive`:
+  ```agda
+  antisym-≡ : Antisym P Q _≡_ → Antisym (Pointwise P) (Pointwise Q) _≡_
+  ```
+
+* In `Data.Vec.Relation.Unary.Unique.Setoid`:
+  ```
+  unique? : Decidable _≈_ → Decidable Unique
   ```
 
 * In `Function.Bundles.Bijection`:
@@ -562,6 +613,13 @@ Additions to existing modules
   bijection   : Bijection R S → Bijection S R
   ```
 
+* In `Function.Nary.NonDependent.Base`:
+  ```agda
+  lappend : ∀ m n → Levels m → Levels n → Levels (m + n)
+  sappend : ∀ m n {ℓm : Levels m} {ℓn : Levels n} →
+          Sets m ℓm → Sets n ℓn → Sets (m + n) (lappend m n ℓm ℓn)
+  ```
+
 * In `Function.Properties.Bijection`:
   ```agda
   sym : Bijection S T → Bijection T S
@@ -597,6 +655,21 @@ Additions to existing modules
   inverseˡ         : Inverseˡ _≈₁_ _≈₂_ to from
   strictlyInverseˡ : StrictlyInverseˡ _≈₂_ to from
   from-injective   : Injective _≈₂_ _≈₁_ from
+  ```
+
+* In `Relation.Binary.Construct.Add.Extrema.NonStrict`:
+  ```agda
+  ≤±-refl : Reflexive _≤_ → Reflexive _≤±_
+  ```
+
+* In `Relation.Binary.Construct.Add.Infimum.NonStrict`:
+  ```agda
+  ≤₋-refl : Reflexive _≤_ → Reflexive _≤₋_
+  ```
+
+* In `Relation.Binary.Construct.Add.Supremum.NonStrict`:
+  ```agda
+  ≤⁺-refl : Reflexive _≤_ → Reflexive _≤⁺_
   ```
 
 * In `Relation.Binary.Definitions`:
