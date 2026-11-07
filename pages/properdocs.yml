@@ -1,0 +1,15 @@
+INHERIT: ../../agda-pages/agda-pages.yml
+
+site_name: Agda Standard Library – Prototype Pages
+
+site_url:  https://pdmosses.github.io/agda-stdlib/
+repo_name: agda-stdlib@v2.4-pages
+repo_url:  https://github.com/pdmosses/agda-stdlib/tree/v2.4-pages
+
+extra:
+  version:
+    provider: mike
+
+plugins:
+  mike:
+    deploy_prefix: 'pages'
