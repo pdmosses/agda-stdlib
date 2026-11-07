@@ -34,6 +34,13 @@ code.Agda {
   font-size: 1em;
 }
 
+/*  TODO: agda-pages-light.css uses black/#000000,
+    and agda-pages-dark.css uses white/#FFFFFF,
+    for consistency with the standard Agda.css.
+    Consider whether replacing by var(--md-code-fg-color)
+    would give a more harmonious appearance.
+ */
+
 /*  Make the font-size for KaTeX the same as for running text: 
     https://katex.org/docs/font
 */

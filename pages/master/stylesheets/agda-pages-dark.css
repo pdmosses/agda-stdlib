@@ -2,20 +2,20 @@
 
   /* Aspects. */
   .Agda .Comment       { color: #FF7F24 }
-  /* .Agda .Background    { } */
-  /* .Agda .Markup        { color: #000000 } */
+  .Agda .Background    { }
+  .Agda .Markup        { color: #FFFFFF }
   .Agda .Keyword       { color: #FF9932 }
   .Agda .String        { color: #DD4D4D }
   .Agda .Number        { color: #9010E0 }
   .Agda .Symbol        { color: #BFBFBF }
   .Agda .PrimitiveType { color: #8080FF }
-  /* .Agda .Pragma        { color: black } */
-  /* .Agda .Operator      { } */
+  .Agda .Pragma        { color: white }
+  .Agda .Operator      { }
   .Agda .Hole          { background: #606060 }
 
   /* NameKinds. */
-  /* .Agda .Bound                  { color: black } */
-  /* .Agda .Generalizable          { color: black } */
+  .Agda .Bound                  { color: white }
+  .Agda .Generalizable          { color: white }
   .Agda .InductiveConstructor   { color: #29CC29 }
   .Agda .CoinductiveConstructor { color: #29CC29 }
   .Agda .Datatype               { color: #8080FF }
@@ -28,15 +28,15 @@
   .Agda .Record                 { color: #8080FF }
 
   /* OtherAspects. */
-  /* .Agda .DottedPattern        {} */
-  .Agda .UnsolvedMeta         { /* color: black; */ background: #806B00 }
-  .Agda .UnsolvedConstraint   { /* color: black; */ background: #806B00 }
-  .Agda .TerminationProblem   { /* color: black; */ background: #802400 }
-  .Agda .IncompletePattern    { /* color: black; */ background: #CD80FF }
+  .Agda .DottedPattern        {}
+  .Agda .UnsolvedMeta         { color: white; background: #806B00 }
+  .Agda .UnsolvedConstraint   { color: white; background: #806B00 }
+  .Agda .TerminationProblem   { color: white; background: #802400 }
+  .Agda .IncompletePattern    { color: white; background: #CD80FF }
   .Agda .Error                { color: #FF0000; text-decoration: underline }
-  .Agda .TypeChecks           { /* color: black; */ background: #006080 }
-  .Agda .Deadcode             { /* color: black; */ background: #808080 }
-  .Agda .ShadowingInTelescope { /* color: black; */ background: #808080 }
+  .Agda .TypeChecks           { color: white; background: #006080 }
+  .Agda .Deadcode             { color: white; background: #808080 }
+  .Agda .ShadowingInTelescope { color: white; background: #808080 }
 
   /* Standard attributes. */
   .Agda a { text-decoration: none }
