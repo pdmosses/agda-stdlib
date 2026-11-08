@@ -1,0 +1,15 @@
+INHERIT: agda-pages/agda-pages.yml
+
+site_name: Agda Standard Library – Prototype Pages
+
+site_url:  https://OWNER.github.io/agda-stdlib/
+repo_name: agda-stdlib@BRANCH
+repo_url:  https://github.com/OWNER/agda-stdlib/tree/BRANCH
+
+extra:
+  version:
+    provider: mike
+
+plugins:
+  mike:
+    deploy_prefix: 'pages'
