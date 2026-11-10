@@ -28,22 +28,27 @@ if [ "$V" == "${BRANCH}" ]; then
   exit 1
 fi
 
-# Add agda-pages to pages as a submodule:
+echo "Adding agda-pages submodule to pages"
+
 git submodule add --force https://github.com/pdmosses/agda-pages/ pages/agda-pages
 echo "\tbranch = main" >> .gitmodules
 git add .
 git commit -a -m 'Add pages'
 git push
 
-# Execute make commands from the pages directory:
 cd pages
+
+echo "Adding pages/properdocs.yml for version $V$"
 make properdocs # instead of make check
+
+echo "Copying HTML files to pages/html"
 make copy-html  # instead of make gen-html
+
+echo "Generating Markdown files in paegs/docs"
 make gen-pages  # instead of make web
 
+echo "Deploying version $V$ to https://${OWNER}.github.io/agda-stdlib/pages/$V/"
 make deploy VERSION=$V -n # Remove "-n" after testing
-echo "Generated website not yet deployed"
 
-# Version V should appear at https://OWNER.github.io/agda-stdlib/pages/V/
-# If it hasn't appeared after a few minutes, check the deployment job
-# at https://github.com/OWNER/agda-stdlib/tree/gh-pages
+echo "If it hasn't appeared on GitHub after a few minutes, check the deployment job status at"
+echo "https://github.com/${OWNER}/agda-stdlib/tree/gh-pages"
