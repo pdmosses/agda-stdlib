@@ -27,7 +27,7 @@ then
   echo "Execution abandoned"
   exit 1
 else
-  printf "%s" "\nGenerating and deploying website for version $V\n\n"
+  printf "\n%s\n\n" "Generating and deploying website for version $V"
 fi
 
 # Set the OWNER of the clone/fork:
@@ -35,7 +35,7 @@ ORIGIN=$(git remote get-url origin)
 REPO=${ORIGIN#https:\/\/github.com\/}
 OWNER=${REPO%%\/*}
 
-printf "%s" "\nAdding agda-pages submodule to pages\n\n"
+printf "\n%s\n\n" "Adding agda-pages submodule to pages"
 
 git submodule add --force https://github.com/pdmosses/agda-pages/ pages/agda-pages
 if ! grep -q '^\tbranch = main$' .gitmodules
@@ -48,18 +48,18 @@ git push
 
 cd pages
 
-printf "%s" "\nAdding pages/properdocs.yml for version $V\n\n"
+printf "\n%s\n\n" "Adding pages/properdocs.yml for version $V"
 make properdocs
 
-printf "%s" "\nCopying HTML files to pages/html\n\n"
+printf "\n%s\n\n" "Copying HTML files to pages/html"
 make copy-html
 
-printf "%s" "\nGenerating Markdown files in pages/docs\n\n"
+printf "\n%s\n\n" "Generating Markdown files in pages/docs"
 make gen-pages
 
-printf "%s" "\nDeploying version $V to https://${OWNER}.github.io/agda-stdlib/pages/$V/\n\n"
+printf "\n%s\n\n" "Deploying version $V to https://${OWNER}.github.io/agda-stdlib/pages/$V/"
 make deploy VERSION=$V
 
-printf "%s" \
-  "\nIf it hasn't appeared on GitHub after a few minutes, check the deployment job status at\n" \
-  "https://github.com/${OWNER}/agda-stdlib/tree/gh-pages\n\n"
+printf "\n%s\n%s\n\n" \
+  "If it hasn't appeared on GitHub after a few minutes, check the deployment job status at" \
+  "https://github.com/${OWNER}/agda-stdlib/tree/gh-pages"
