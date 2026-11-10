@@ -56,11 +56,11 @@ OWNER = $(patsubst https://github.com/%,%,$(patsubst %/agda-stdlib.git,%,$(shell
 # for consistency of appearance when switching versions in the browser.
 
 .PHONY: properdocs
-export PROPERDOCS
+export YML
 properdocs:
-	@echo "$${PROPERDOCS}" > properdocs.yml
+	@echo "$${YML}" > properdocs.yml
 
-define PROPERDOCS
+define YML
 INHERIT: agda-pages/agda-pages.yml
 
 site_name: Agda Standard Library – Prototype Pages
