@@ -2,9 +2,9 @@ INHERIT: agda-pages/agda-pages.yml
 
 site_name: Agda Standard Library – Prototype Pages
 
-site_url:  https://OWNER.github.io/agda-stdlib/
-repo_name: agda-stdlib@BRANCH
-repo_url:  https://github.com/OWNER/agda-stdlib/tree/BRANCH
+site_url:  https://pdmosses.github.io/agda-stdlib/
+repo_name: agda-stdlib@v2.1-pages
+repo_url:  https://github.com/pdmosses/agda-stdlib/tree/v2.1-pages
 
 extra:
   version:
