@@ -28,6 +28,11 @@ if [ "$V" == "${BRANCH}" ]; then
   exit 1
 fi
 
+# Set the OWNER of the clone/fork:
+ORIGIN=$(git remote get-url origin)
+REPO=${ORIGIN#https:\/\/github.com\/}
+OWNER=${REPO%%\/*}
+
 echo "Adding agda-pages submodule to pages"
 
 git submodule add --force https://github.com/pdmosses/agda-pages/ pages/agda-pages
@@ -38,17 +43,17 @@ git push
 
 cd pages
 
-echo "Adding pages/properdocs.yml for version $V$"
+echo "Adding pages/properdocs.yml for version $V"
 make properdocs # instead of make check
 
 echo "Copying HTML files to pages/html"
 make copy-html  # instead of make gen-html
 
-echo "Generating Markdown files in paegs/docs"
+echo "Generating Markdown files in pages/docs"
 make gen-pages  # instead of make web
 
-echo "Deploying version $V$ to https://${OWNER}.github.io/agda-stdlib/pages/$V/"
-make deploy VERSION=$V -n # Remove "-n" after testing
+echo "Deploying version $V to https://${OWNER}.github.io/agda-stdlib/pages/$V/"
+make deploy VERSION=$V -n
 
 echo "If it hasn't appeared on GitHub after a few minutes, check the deployment job status at"
 echo "https://github.com/${OWNER}/agda-stdlib/tree/gh-pages"
