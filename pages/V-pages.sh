@@ -26,6 +26,8 @@ if [ "$V" == "${BRANCH}" ]; then
   echo "Current branch `${BRANCH}` not named `*-pages`"
   echo "Execution abandoned"
   exit 1
+else
+  printf "%s\n" "Generating and deploying website for version $V"
 fi
 
 # Set the OWNER of the clone/fork:
@@ -33,27 +35,30 @@ ORIGIN=$(git remote get-url origin)
 REPO=${ORIGIN#https:\/\/github.com\/}
 OWNER=${REPO%%\/*}
 
-echo "Adding agda-pages submodule to pages"
+printf "%s\n" "Adding agda-pages submodule to pages"
 
 git submodule add --force https://github.com/pdmosses/agda-pages/ pages/agda-pages
-echo "\tbranch = main" >> .gitmodules
+if ! grep -q '^\tbranch = main$' .gitmodules; then
+  echo "\tbranch = main" >> .gitmodules
+fi
 git add .
 git commit -a -m 'Add pages'
 git push
 
 cd pages
 
-echo "Adding pages/properdocs.yml for version $V"
-make properdocs # instead of make check
+printf "%s\n" "Adding pages/properdocs.yml for version $V"
+make properdocs
 
-echo "Copying HTML files to pages/html"
-make copy-html  # instead of make gen-html
+printf "%s\n" "Copying HTML files to pages/html"
+make copy-html
 
-echo "Generating Markdown files in pages/docs"
-make gen-pages  # instead of make web
+printf "%s\n" "Generating Markdown files in pages/docs"
+make gen-pages
 
-echo "Deploying version $V to https://${OWNER}.github.io/agda-stdlib/pages/$V/"
+printf "%s\n" "Deploying version $V to https://${OWNER}.github.io/agda-stdlib/pages/$V/"
 make deploy VERSION=$V -n
 
-echo "If it hasn't appeared on GitHub after a few minutes, check the deployment job status at"
-echo "https://github.com/${OWNER}/agda-stdlib/tree/gh-pages"
+printf "%s\n" \
+  "If it hasn't appeared on GitHub after a few minutes, check the deployment job status at" \
+  "https://github.com/${OWNER}/agda-stdlib/tree/gh-pages"
