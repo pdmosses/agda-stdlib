@@ -1,0 +1,14 @@
+nav:
+  - About: About.md
+  - README/
+  - Library:
+    - index.md
+    - Everything.md
+    - EverythingSafe.md
+    - '*'
+
+preserve_directory_names: true
+
+sort:
+  ignore_case: true
+  sections: mixed
