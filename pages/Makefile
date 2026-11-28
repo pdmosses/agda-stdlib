@@ -12,24 +12,21 @@ REF = $(patsubst %-pages,%, $(BRANCH))
 
 OWNER = $(patsubst https://github.com/%,%,$(patsubst %/agda-stdlib.git,%,$(shell git remote get-url origin)))
 
-# Website generation for version V of agda-stdlib/pages:
+# Website generation for version REF of agda-stdlib/pages:
 #
 # cd pages
 # make properdocs # instead of make check
 # make copy-html  # instead of make gen-html
 # make gen-pages
 # make serve      # for a local preview
-# make deploy VERSION=V
-
-# After testing, the above commands (omitting make serve) could be abbeviated to:
-# make agda-stdlib-pages VERSION=V
-# See https://stackoverflow.com/questions/5377297/how-to-manually-call-another-target-from-a-make-target/
+# make deploy VERSION=REF
 
 # Development versions:
 # master
 # experimental
 
 # Released versions:
+# v2.4.1 (HTML pending)
 # v2.4
 # v2.3
 # v2.2
@@ -50,28 +47,47 @@ OWNER = $(patsubst https://github.com/%,%,$(patsubst %/agda-stdlib.git,%,$(shell
 # v0.17
 # v0.16
 
-# `make properdocs` updates properdocs.yml to refer to version V
+# `make properdocs` updates properdocs.yml to refer to version REF
 
 # Note: The same CSS is inherited from Agda-Pages for all versions,
 # for consistency of appearance when switching versions in the browser.
 
 .PHONY: properdocs
+export YML
 properdocs:
-	@$(SD) '(site_url:[ ]+https://).*(.github.io/agda-stdlib/).*$$' \
-	       '$${1}$(OWNER)$${2}' properdocs.yml
-	@$(SD) '(repo_url:[ ]+https://github.com/).*(/agda-stdlib).*$$' \
-	       '$${1}$(OWNER)$${2}/tree/$(BRANCH)' properdocs.yml
-	@$(SD) '(repo_name:[ ]+)(agda-stdlib).*$$' \
-	       '$${1}$${2}@$(BRANCH)' properdocs.yml
+	@echo "$${YML}" > properdocs.yml
 
-# `make copy-html` copies HTML files for version V from the gh-pages branch
+define YML
+INHERIT: agda-pages/agda-pages.yml
+
+site_name: Agda Standard Library – Prototype Pages
+
+site_url:  https://$(OWNER).github.io/agda-stdlib/
+repo_name: agda-stdlib@$(BRANCH)
+repo_url:  https://github.com/$(OWNER)/agda-stdlib/tree/$(BRANCH)
+
+extra:
+  version:
+    provider: mike
+
+plugins:
+  mike:
+    deploy_prefix: 'pages'
+endef
+
+# `make copy-html` copies HTML files for version REF from the gh-pages branch
 # of agda/agda-stdlib to html. The HTML files for the master version are at
 # the root of the gh-pages branch.
 
 .PHONY: copy-html
 copy-html: clean
 	@git clone --depth 1 --single-branch --branch gh-pages https://github.com/agda/agda-stdlib temp
-	@mkdir -p html && cp temp/$(REF)/*.html html
+	@if [ -d "temp/$(REF)" ]; then \
+	    mkdir -p html && cp temp/$(REF)/*.html html; \
+	else \
+	    echo "ERROR: HTML for $(REF) not found"; \
+	    exit 1; \
+	fi
 	@rm -rf temp
 	@echo "Generated HTML files in html"
 
